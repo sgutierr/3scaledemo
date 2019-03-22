@@ -1,0 +1,160 @@
+{
+    "name": "Payments Company",
+    "description": "This is an inventory of APIs available as part of the Payment World Company network.",
+    "image": "http://i.imgur.com/ntV92b4.png",
+    "tags": [
+      "Telecommunications",
+      "Communications"
+    ],
+    "created": "2017-01-24",
+    "modified": "2017-01-24",
+    "scope": "internal",
+    "url": "https://3scale.openshift.it/APICatalog/apis.json",
+    "specificationVersion": "0.14",
+    "apis": [
+      {
+        "name": "Customer API",
+        "description": "The shop API empowers developers to build amazing new apps or websites using E-Commerce shop data and services.",
+        "X-3scale":{
+          "service_id":2,
+          "swagger_system_name":"api",
+          "long_name":"api"
+        },
+        "image": "/images/customer.png",
+        "humanURL": "https://3scale.openshift.it",
+        "baseURL": "https://3scale.openshift.it",
+        "tags": [
+          "Loans",
+          "Finance",
+          "Free",
+          "Pay per use"
+        ],
+        "properties": [
+          {
+            "type": "X-signup",
+            "url": "https://www.zalando.com/"
+          },
+          {
+            "type": "Swagger",
+            "url": "https://api.zalando.com/schema/swagger.json"
+          }
+        ],
+        "contact": [
+          {
+            "FN": "Payment Company",
+            "email": "info@worldcompany.com",
+            "X-twitter": "worldcompany"
+          }
+        ]
+      },
+      {
+        "name": "Orders API",
+        "description": "Start sending and receiving money today with our secure transfer fund capabilities that will grow your business and attract more customers.",
+        "X-3scale":{
+          "service_id":21,
+          "swagger_system_name":"Orders",
+          "long_name":"Orders"
+        },
+        "image": "/images/payments-side-img-usa.png",
+        "humanURL": "https://orders-3scale-apicast-staging.api.5.9.49.249.xip.io",
+        "baseURL": "https://orders-3scale-apicast-staging.api.5.9.49.249.xip.io",
+        "tags": [
+          "Loans",
+          "Mortgages",
+          "Free",
+          "Pay per use"   
+        ],
+        "properties": [
+          {
+            "type": "X-signup",
+            "url": "https://orders-3scale-apicast-staging.api.5.9.49.249.xip.io"
+          },
+          {
+            "type": "Swagger",
+            "url": "https://api.zalando.com/schema/swagger.json"
+          }
+        ],
+        "contact": [
+          {
+            "FN": "Payment Company",
+            "email": "info@worldcompany.com",
+            "X-twitter": "worldcompany"
+          }
+        ]
+      },
+     {
+        "name": "Check credit score API",
+        "description": "Gives developers a way to retrieve key user information, accurate and updated. Know your users without endless forms.",
+        "X-3scale":{
+          "service_id":21,
+          "swagger_system_name":"zalando2",
+          "long_name":"zalando2"
+        },
+        "image": "/images/paystats-side-img.png",
+        "humanURL": "https://postman-apicast-staging.openshift.it",
+        "baseURL": "https://postman-apicast-staging.openshift.it",
+        "tags": [
+          "Loans",
+          "Free"
+        ],
+        "properties": [
+          {
+            "type": "X-signup",
+            "url": "https://postman-apicast-staging.openshift.it"
+          },
+          {
+            "type": "Swagger",
+            "url": "https://api.zalando.com/schema/swagger.json"
+          }
+        ],
+        "contact": [
+          {
+            "FN": "Payment Company",
+            "email": "info@worldcompany.com",
+            "X-twitter": "worldcompany"
+          }
+        ]
+      },
+     {
+        "name": "Loan interest Price",
+        "description": "Gives developers a way to retrieve key user information, accurate and updated. Know your users without endless forms.",
+        "X-3scale":{
+          "service_id":87,
+          "swagger_system_name":"loan_interest_pricing_1",
+          "long_name":"loan_interest_pricing_1"
+        },
+        "image": "/images/creditcardblue.png",
+        "humanURL": "https://postman-apicast-staging.openshift.it",
+        "baseURL": "https://postman-apicast-staging.openshift.it",
+        "tags": [
+          "Loans",
+          "Free"
+        ],
+        "properties": [
+          {
+            "type": "X-signup",
+            "url": "https://postman-apicast-staging.openshift.it"
+          },
+          {
+            "type": "Swagger",
+            "url": "https://api.zalando.com/schema/swagger.json"
+          }
+       ],
+       "contact": [
+        {
+          "FN": "Payment Company",
+          "email": "info@worldcompany.com",
+          "X-twitter": "worldcompany"
+        }
+      ]
+     }          
+    ], 
+    "include": [],
+    "maintainers": [
+      {
+        "FN": "World Company",
+        "email": "info@worldcompany.com",
+        "X-twitter": "worldcompany"
+      }
+    ]
+  }

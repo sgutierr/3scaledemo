@@ -1,0 +1,35 @@
+apiVersion: route.openshift.io/v1
+kind: Route
+metadata:
+  creationTimestamp: '2019-03-18T22:12:38Z'
+  labels:
+    3scale.component: apicast
+    3scale.component-element: wildcard-router
+    app: 3scale-api-management
+  name: apicast-wildcard-router
+  namespace: 3scale
+  resourceVersion: '11468'
+  selfLink: /apis/route.openshift.io/v1/namespaces/3scale/routes/apicast-wildcard-router
+  uid: f0ee1eee-49ca-11e9-9398-0247e91ce80a
+spec:
+  host: apicast-wildcard.api.apps.dubai-5ef9.openshiftworkshop.com
+  port:
+    targetPort: http
+  tls:
+    insecureEdgeTerminationPolicy: Allow
+    termination: edge
+  to:
+    kind: Service
+    name: apicast-wildcard-router
+    weight: 100
+  wildcardPolicy: Subdomain
+status:
+  ingress:
+    - conditions:
+        - lastTransitionTime: '2019-03-18T22:12:38Z'
+          status: 'True'
+          type: Admitted
+      host: apicast-wildcard.apps.dubai-5ef9.openshiftworkshop.com
+      routerName: router
+      wildcardPolicy: None
+
