@@ -348,15 +348,18 @@
       "type" : "object"
     }
   },
-  "securityDefinitions" : {
-    "user-key" : {
-      "type" : "apiKey",
-      "description" : "user-key",
-      "name" : "user-key",
-      "in" : "query"
+  "securityDefinitions": {
+    "oidc": {
+      "type": "oauth2",
+      "description": "oidc",
+      "flow": "password",
+      "tokenUrl": "https://rhsso.example.com",
+      "scopes": {}
     }
   },
-  "security" : [ {
-    "user-key" : [ ]
-  } ]
+  "security": [
+    {
+      "oidc": []
+    }
+  ]
 }
