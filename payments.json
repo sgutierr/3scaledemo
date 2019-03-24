@@ -1,0 +1,362 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "Payment-API",
+    "description" : "Payment DEMO API",
+    "termsOfService" : "http://swagger.io/terms/",
+    "contact" : {
+      "name" : "The Payment RH-DEMO Team",
+      "url" : "http://www.redhat.com",
+      "email" : "sgutierr@redhat.com"
+    },
+    "license" : {
+      "name" : "3Scale-Red Hat",
+      "url" : "http://github.com/3scale/sms/LICENSE-MIT"
+    },
+    "version" : "1.5"
+  },
+  "host" : "payments-staging.5.9.12.13.xip.io",
+  "schemes" : [ "https" ],
+  "consumes" : [ "application/json" ],
+  "produces" : [ "application/json" ],
+  "paths" : {
+    "/basic-auth" : {
+      "get" : {
+        "description" : "Postman Basic Auth",
+        "operationId" : "smoketest",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : false,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Basic authentication",
+          "required" : false,
+          "type" : "string",
+          "default" : "Basic cG9zdG1hbjpwYXNzd29yZA=="
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SMS Details response",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/{version}/payment/{id}" : {
+      "get" : {
+        "description" : "Returns a payment ID",
+        "operationId" : "Returns a payment ID",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : false,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id of Payment",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "version",
+          "in" : "path",
+          "description" : "version",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Request payment info",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      },
+      "post" : {
+        "parameters" : [ {
+          "name" : "id",
+          "in" : "path",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "version",
+          "in" : "path",
+          "description" : "Version",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "Payment OK"
+          }
+        }
+      }
+    },
+    "/{version}/payment" : {
+      "post" : {
+        "description" : "Uploads an Payment",
+        "operationId" : "Uploads an Payment",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : false,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "body",
+          "in" : "body",
+          "description" : "New Payment",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SMSDetails"
+          }
+        }, {
+          "name" : "version",
+          "in" : "path",
+          "description" : "version",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SMS Details response",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/{version}/payment/update/{id}" : {
+      "put" : {
+        "description" : "Updates an Payment",
+        "operationId" : "Updates an Payment",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : true,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "body",
+          "in" : "body",
+          "description" : "New Payment",
+          "required" : true,
+          "schema" : {
+            "$ref" : "#/definitions/SMSDetails"
+          }
+        }, {
+          "name" : "version",
+          "in" : "path",
+          "description" : "version",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SMS Details response",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/{version}/payment/{id}/" : {
+      "delete" : {
+        "description" : "Delete a Payment",
+        "operationId" : "Delete a Payment",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : false,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "id",
+          "in" : "path",
+          "description" : "id of Payment",
+          "required" : true,
+          "type" : "string"
+        }, {
+          "name" : "version",
+          "in" : "path",
+          "description" : "version",
+          "required" : true,
+          "type" : "string"
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SMS Details response",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    },
+    "/v1/" : {
+      "get" : {
+        "description" : "Postman Basic Auth",
+        "operationId" : "opAuth",
+        "parameters" : [ {
+          "name" : "user_key",
+          "in" : "query",
+          "description" : "user_key",
+          "required" : false,
+          "type" : "string",
+          "x-data-threescale-name" : "user_keys"
+        }, {
+          "name" : "Authorization",
+          "in" : "header",
+          "description" : "Basic authentication",
+          "required" : false,
+          "type" : "string",
+          "default" : "Basic cG9zdG1hbjpwYXNzd29yZA=="
+        } ],
+        "responses" : {
+          "200" : {
+            "description" : "SMS Details response",
+            "schema" : {
+              "$ref" : "#/definitions/SMSDetails"
+            }
+          },
+          "403" : {
+            "description" : "Authentication failed",
+            "schema" : {
+              "$ref" : "#/definitions/AuthenticationFailed"
+            }
+          },
+          "default" : {
+            "description" : "unexpected error",
+            "schema" : {
+              "$ref" : "#/definitions/Error"
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions" : {
+    "SMSDetails" : {
+      "type" : "object",
+      "properties" : {
+        "id" : {
+          "format" : "int64",
+          "type" : "integer"
+        },
+        "from" : {
+          "type" : "string"
+        },
+        "to" : {
+          "type" : "string"
+        },
+        "characters" : {
+          "type" : "string"
+        },
+        "timeStamp" : {
+          "type" : "string"
+        },
+        "read" : {
+          "type" : "boolean"
+        }
+      }
+    },
+    "AuthenticationFailed" : {
+      "type" : "object"
+    },
+    "Error" : {
+      "type" : "object"
+    }
+  },
+  "securityDefinitions" : {
+    "user-key" : {
+      "type" : "apiKey",
+      "description" : "user-key",
+      "name" : "user-key",
+      "in" : "query"
+    }
+  },
+  "security" : [ {
+    "user-key" : [ ]
+  } ]
+}
