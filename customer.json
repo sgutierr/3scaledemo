@@ -3,7 +3,7 @@
   "info": {
     "title": "CustomerAPI",
     "description": "Customer API for testing",
-    "version": "1.0.0"
+    "version": "1.1.0"
   },
   "paths": {
     "/getCustomer": {
