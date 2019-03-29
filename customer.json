@@ -1,35 +1,23 @@
 {
-  "swagger": "2.0",
-  "info": {
-    "title": "CustomerAPI",
-    "description": "Customer API for testing",
-    "version": "1.1.0"
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "CustomerAPI",
+    "description" : "Customer API for testing",
+    "version" : "1.0.0"
   },
-  "paths": {
-    "/getCustomer": {
-      "get": {
-        "summary": "Get customer",
-        "description": "test",
-        "operationId": "description",
-        "responses": {
-          "200": {
-            "description": "OK"
+  "paths" : {
+    "/getCustomer" : {
+      "get" : {
+        "summary" : "Get customer",
+        "description" : "test",
+        "operationId" : "smoketest",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
           }
         }
       }
     }
   },
-  "securityDefinitions": {
-    "user-key": {
-      "type": "apiKey",
-      "description": "user-key",
-      "name": "user-key",
-      "in": "query"
-    }
-  },
-  "security": [
-    {
-      "user-key": []
-    }
-  ]
+  "securityDefinitions" : { }
 }
