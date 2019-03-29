@@ -19,5 +19,15 @@
       }
     }
   },
-  "securityDefinitions" : { }
+  "securityDefinitions" : {
+    "apikey" : {
+      "type" : "apiKey",
+      "description" : "apikey",
+      "name" : "user_key",
+      "in" : "query"
+    }
+  },
+  "security" : [ {
+    "apikey" : [ ]
+  } ]
 }
