@@ -163,18 +163,18 @@
             },
             "examples" : {
               "application/json" : {
-                "id" : 83,
+                "id" : 33,
                 "category" : {
-                  "id" : 87,
+                  "id" : 49,
                   "name" : "some text"
                 },
                 "name" : "some text",
                 "photoUrls" : [ "some text", "some text" ],
                 "tags" : [ {
-                  "id" : 15,
+                  "id" : 58,
                   "name" : "some text"
                 }, {
-                  "id" : 17,
+                  "id" : 11,
                   "name" : "some text"
                 } ],
                 "status" : "some text"
@@ -416,6 +416,9 @@
           }
         } ],
         "responses" : {
+          "200" : {
+            "description" : "new user created"
+          },
           "default" : {
             "description" : "successful operation"
           }
@@ -552,6 +555,18 @@
             "description" : "successful operation",
             "schema" : {
               "$ref" : "#/definitions/User"
+            },
+            "examples" : {
+              "application/json" : {
+                "id" : 70,
+                "username" : "some text",
+                "firstName" : "some text",
+                "lastName" : "some text",
+                "email" : "some text",
+                "password" : "some text",
+                "phone" : "some text",
+                "userStatus" : 58
+              }
             }
           },
           "400" : {
