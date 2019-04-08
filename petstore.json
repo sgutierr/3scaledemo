@@ -2,7 +2,7 @@
   "swagger" : "2.0",
   "info" : {
     "title" : "Store Catalog API",
-    "description" : "An API for querying beer catalog of Acme Inc.",
+    "description" : "An API for querying items catalog of Acme Inc.",
     "contact" : {
       "name" : "Laurent Broudoux",
       "url" : "http://github.com/lbroudoux",
@@ -12,14 +12,14 @@
       "name" : "MIT License",
       "url" : "https://opensource.org/licenses/MIT"
     },
-    "version" : "0.9"
+    "version" : "1.0"
   },
   "paths" : {
     "/item" : {
       "get" : {
         "tags" : [ "item" ],
-        "summary" : "List beers within catalog",
-        "description" : "List beers within catalog",
+        "summary" : "List Items within catalog",
+        "description" : "List Items within catalog",
         "operationId" : "ListItems",
         "responses" : {
           "200" : {
@@ -43,12 +43,12 @@
     "/item/{name}" : {
       "get" : {
         "tags" : [ "item" ],
-        "summary" : "Get beer having name",
-        "description" : "Get beer having name",
-        "operationId" : "GetBeer",
+        "summary" : "Get item having name",
+        "description" : "Get item having name",
+        "operationId" : "GetItems",
         "responses" : {
           "200" : {
-            "description" : "Beer having requested name",
+            "description" : "Item having requested name",
             "schema" : {
               "$ref" : "#/definitions/Item"
             }
@@ -84,7 +84,7 @@
       "parameters" : [ {
         "name" : "status",
         "in" : "path",
-        "description" : "Status of beers to retrieve",
+        "description" : "Status of items to retrieve",
         "required" : true,
         "type" : "string"
       }, {
