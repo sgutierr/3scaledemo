@@ -12,7 +12,7 @@
       "name" : "MIT License",
       "url" : "https://opensource.org/licenses/MIT"
     },
-    "version" : "1.0"
+    "version" : "1.1"
   },
   "paths" : {
     "/item" : {
@@ -29,7 +29,8 @@
               "items" : {
                 "$ref" : "#/definitions/Item"
               }
-            }
+            },
+            "examples" : { }
           }
         }
       },
