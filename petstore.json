@@ -66,12 +66,12 @@
     "/item/findByStatus/{status}" : {
       "get" : {
         "tags" : [ "item" ],
-        "summary" : "Get beers having status",
-        "description" : "Get beers having status",
-        "operationId" : "FindBeersByStatus",
+        "summary" : "Get itemss having status",
+        "description" : "Get items having status",
+        "operationId" : "FindItemssByStatus",
         "responses" : {
           "200" : {
-            "description" : "List of beers having requested status",
+            "description" : "List of items having requested status",
             "schema" : {
               "type" : "array",
               "items" : {
