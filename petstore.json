@@ -52,6 +52,15 @@
             "description" : "Item having requested name",
             "schema" : {
               "$ref" : "#/definitions/Item"
+            },
+            "examples" : {
+              "application/json" : {
+                "name" : "some text",
+                "country" : "some text",
+                "type" : "some text",
+                "rating" : 97.16,
+                "status" : "some text"
+              }
             }
           }
         }
