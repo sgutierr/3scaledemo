@@ -1,0 +1,33 @@
+{
+  "swagger" : "2.0",
+  "info" : {
+    "title" : "CustomerAPI",
+    "description" : "Customer API for testing",
+    "version" : "1.0.0"
+  },
+  "paths" : {
+    "/getCustomer" : {
+      "get" : {
+        "summary" : "Get customer",
+        "description" : "test",
+        "operationId" : "smoketest",
+        "responses" : {
+          "200" : {
+            "description" : "OK"
+          }
+        }
+      }
+    }
+  },
+  "securityDefinitions" : {
+    "apikey" : {
+      "type" : "apiKey",
+      "description" : "apikey",
+      "name" : "user_key",
+      "in" : "query"
+    }
+  },
+  "security" : [ {
+    "apikey" : [ ]
+  } ]
+}
