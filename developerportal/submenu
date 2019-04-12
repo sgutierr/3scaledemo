@@ -33,11 +33,13 @@
             <a href="{{ urls.services }}">{{ urls.services.title }}</a>
           </li>
         {% endif %}
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe APIs</a></li>
-        {% if current_account.name != 'E24' && current_account.name != 'E31'  %} 
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/docs">Documentation</a></li>
+         {% if current_account.name == 'SDG' %}
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe </a></li>
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/APICatalog/apilist">Search </a></li>  
+        {% else %}
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/APICatalog/apilist_public">Search </a></li>                 
         {% endif %}
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/APICatalog/apilist">Search API</a></li>  
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/docs">Docs</a></li>
       </ul>
     {% endunless %}
     <ul id="user_widget" class="nav navbar-nav navbar-right">
