@@ -77,7 +77,6 @@ objects:
             chmod -R 775 /usr/lib/python2.7/site-packages && \
             chown -R 1001:0 $HOME && \
             chmod -R g+rw $HOME
-        USER 1001
       type: Dockerfile
     strategy:
       dockerStrategy:
