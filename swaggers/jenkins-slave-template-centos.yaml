@@ -70,7 +70,7 @@ objects:
         USER root
         RUN yum -y install epel-release && \ 
             yum install -y ansible && \            
-            yum install -y rh-python33 && \
+            yum install -y rh-python36 && \
             yum install -y python-pip && \
             scl enable rh-python36 bash && \
             pip install jinja2 && \
