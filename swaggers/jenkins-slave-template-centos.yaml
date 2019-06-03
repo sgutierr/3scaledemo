@@ -72,6 +72,8 @@ objects:
             yum install -y ansible && \
             yum install -y python-pip && \
             pip install jinja2 && \
+            pip install --upgrade pip && \
+            pip install Jinja2==2.8 -t lib && \ 
             yum clean all && \
             rm -rf /var/cache/yum && \
             chmod -R 775 /usr/lib/python2.7/site-packages && \
