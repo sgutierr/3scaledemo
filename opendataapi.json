@@ -9,11 +9,9 @@
     },
     "version" : "1.0.0"
   },
-  "host": "opendata.api.5.9.49.249.xip.io",
-  "basePath": "/open-data",
-  "schemes": [
-    "https"
-  ],
+  "host" : "opendata.api.5.9.49.249.xip.io",
+  "basePath" : "/open-data",
+  "schemes" : [ "https" ],
   "consumes" : [ "application/json" ],
   "produces" : [ "application/json" ],
   "paths" : {
@@ -208,7 +206,7 @@
         "in" : "query",
         "required" : false,
         "type" : "string",
-        "x-data-threescale-name":"user_keys"
+        "x-data-threescale-name" : "user_keys"
       } ]
     },
     "/banks/{bank_id}" : {
@@ -241,15 +239,13 @@
         "in" : "path",
         "required" : true,
         "type" : "string"
-      },
-       {
+      }, {
         "name" : "user_key",
         "in" : "query",
         "required" : false,
         "type" : "string",
-        "x-data-threescale-name":"user_keys"
-      }                 
-     ]
+        "x-data-threescale-name" : "user_keys"
+      } ]
     },
     "/banks/{bank_id}/branches/{branch_id}" : {
       "get" : {
@@ -310,6 +306,17 @@
       } ]
     }
   },
+  "securityDefinitions" : {
+    "userkey" : {
+      "type" : "apiKey",
+      "description" : "userkey",
+      "name" : "user-key",
+      "in" : "query"
+    }
+  },
+  "security" : [ {
+    "userkey" : [ ]
+  } ],
   "tags" : [ {
     "name" : "PSD2",
     "description" : ""
