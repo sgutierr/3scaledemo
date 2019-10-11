@@ -43,7 +43,7 @@
               <span class="icon-bar"></span>
               <span class="icon-bar"></span>              
             </button>
-           <a class="navbar-brand" href="/"><img src="/images/rh_logo.png" alt="Acme logo"></a>            
+           <a class="navbar-brand" href="/"><img src="/images/redhat.png" alt="Acme logo"></a>            
              </div> 
             {% include 'submenu'%}
         </div>

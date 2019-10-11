@@ -1,0 +1,599 @@
+swagger: '2.0'
+info:
+  version: '1.0'
+  title: API
+host: developers.garanti.com.tr
+schemes:
+  - https
+consumes:
+  - application/json
+paths:
+  /garantibbva/v1.0/atms:
+    get:
+      tags:
+        - ATMs
+      description: ATM Locator Service is used to find out nearest branches and ATMs. User can find nearest ATMs or branches around the given location
+      parameters:
+        - name: country
+          in: path
+          description: The ISO country code e.g. &quot;TURKEY&quot;
+          required: true
+          type: string
+        - name: town
+          in: path
+          description: 'Town name, not case sensitive'
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ATMDefinitionMeta'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition400'
+        '408':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition408'
+        '429':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition429'
+        '500':
+          description: System error
+          schema:
+            $ref: '#/definitions/ErrorDefinition500'
+        '503':
+          description: System error
+          schema:
+            $ref: '#/definitions/ErrorDefinition503'
+  '/garantibbva/v1.0/atms/geo-location/lat/{latitude}/long/{longitude}/unitType/{unitType}':
+    get:
+      tags:
+        - ATMs
+      description: ATM Locator Service is used to find out nearest branches and ATMs. User can find nearest ATMs or branches around the given location
+      parameters:
+        - name: latitude
+          in: path
+          description: Positive or negative decimal value in degrees. eg 41.0333187
+          required: true
+          type: string
+        - name: longitude
+          in: path
+          description: Positive or negative decimal value in degrees. eg 28.818883399999997
+          required: true
+          type: string
+        - name: unitType
+          in: path
+          description: Number of miles (1 to 10) as an integer. Default = C
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Success
+          schema:
+            $ref: '#/definitions/ATMDefinitionMeta'
+        '400':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition400'
+        '408':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition408'
+        '429':
+          description: Bad request
+          schema:
+            $ref: '#/definitions/ErrorDefinition429'
+        '500':
+          description: System error
+          schema:
+            $ref: '#/definitions/ErrorDefinition500'
+        '503':
+          description: System error
+          schema:
+            $ref: '#/definitions/ErrorDefinition503'
+definitions:
+  ATMDefinitionMeta:
+    properties:
+      meta:
+        $ref: '#/definitions/MetaDefinition'
+      data:
+        type: array
+        items:
+          $ref: '#/definitions/ATMDefinition'
+    required:
+      - meta
+      - data
+  MetaDefinition:
+    title: Meta data
+    type: object
+    properties:
+      LastUpdated:
+        type: string
+        format: date-time
+      TotalResults:
+        type: integer
+      Agreement:
+        type: string
+        enum:
+          - Use of the APIs and any related data will be subject to the terms of the Open Licence and subject to terms and conditions
+      License:
+        description: Open Banking License
+        type: string
+        format: uri
+        enum:
+          - 'https://www.openbanking.org.uk/open-licence'
+      TermsOfUse:
+        description: Open Banking Terms of Use
+        type: string
+        format: uri
+        enum:
+          - 'https://www.openbanking.org.uk/terms'
+    required:
+      - LastUpdated
+      - TotalResults
+      - Agreement
+      - License
+      - TermsOfUse
+    additionalProperties: false
+  ATMDefinition:
+    properties:
+      Brand:
+        description: Brand of the Acquirer of transactions captured by the ATM
+        type: array
+        title: Brand
+        items:
+          description: Brand of the Acquirer of transactions captured by the ATM
+          type: object
+          properties:
+            BrandName:
+              description: Brand Name that an organisation uses to market its products or services to a consumer
+              title: BrandName
+              type: string
+              minLength: 1
+              maxLength: 140
+            ATM:
+              description: ATM information.
+              type: array
+              title: ATM
+              items:
+                description: ATM information.
+                type: object
+                properties:
+                  Identification:
+                    description: ATM terminal device identification for the acquirer and the issuer.
+                    title: Identification
+                    type: string
+                    minLength: 1
+                    maxLength: 35
+                  SupportedLanguages:
+                    description: 'Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard.'
+                    title: SupportedLanguages
+                    type: array
+                    items:
+                      description: 'Identification of the language name according to the ISO 639-1 codes. The type is validated by the list of values coded with two alphabetic characters, defined in the standard.'
+                      type: string
+                      pattern: '[a-z]{2}'
+                  ATMServices:
+                    description: Describes the type of transaction available for a customer on an ATM.
+                    title: ATMServices
+                    type: array
+                    items:
+                      description: Describes the type of transaction available for a customer on an ATM.
+                      type: string
+                      enum:
+                        - Balance
+                        - BillPayments
+                        - CashDeposits
+                        - CharityDonation
+                        - ChequeDeposits
+                        - CashWithdrawal
+                        - EnvelopeDeposit
+                        - FastCash
+                        - MobileBankingRegistration
+                        - MobilePaymentRegistration
+                        - MobilePhoneTopUp
+                        - OrderStatement
+                        - Other
+                        - PINActivation
+                        - PINChange
+                        - PINUnblock
+                        - MiniStatement
+                  Accessibility:
+                    description: Indicates Types of Accessibility
+                    title: Accessibility
+                    type: array
+                    items:
+                      description: Indicates Types of Accessibility
+                      type: string
+                      enum:
+                        - AudioCashMachine
+                        - AutomaticDoors
+                        - ExternalRamp
+                        - InductionLoop
+                        - InternalRamp
+                        - LevelAccess
+                        - LowerLevelCounter
+                        - Other
+                        - WheelchairAccess
+                  Access24HoursIndicator:
+                    description: Indicates that the ATM is available for use by customers 24 hours per day
+                    title: Access24HoursIndicator
+                    type: boolean
+                  SupportedCurrencies:
+                    description: All ISO 4217 defined currency  supported by the ATM.
+                    title: SupportedCurrencies
+                    type: array
+                    items:
+                      description: ISO 4217 defined currency
+                      type: string
+                      pattern: '[A-Z]{3}'
+                    minItems: 1
+                  MinimumPossibleAmount:
+                    description: Minimum amount allowed for a transaction in the service.
+                    title: MinimumPossibleAmount
+                    type: string
+                    pattern: '^-?\d{1,10}\.?\d{0,2}$'
+                  Note:
+                    description: Summary description of the ATM.
+                    title: Note
+                    type: array
+                    items:
+                      description: maxLength 2000 text
+                      type: string
+                      minLength: 1
+                      maxLength: 2000
+                  OtherAccessibility:
+                    description: 'Enter a new code , name and description for any other ATM accessibility options'
+                    type: array
+                    title: OtherAccessibility
+                    items:
+                      description: 'Enter a new code , name and description for any other ATM accessibility options'
+                      type: object
+                      properties:
+                        Code:
+                          description: The four letter Mnemonic used within an XML file to identify a code
+                          title: Code
+                          type: string
+                          pattern: '^\w{0,4}$'
+                          minLength: 0
+                          maxLength: 4
+                        Name:
+                          description: Long name associated with the code
+                          title: Name
+                          type: string
+                          minLength: 1
+                          maxLength: 70
+                        Description:
+                          description: Description to describe the purpose of the code
+                          title: Description
+                          type: string
+                          minLength: 1
+                          maxLength: 350
+                      required:
+                        - Name
+                        - Description
+                    additionalProperties: false
+                  OtherATMServices:
+                    description: 'Enter a new code , name and description for any other ATM Service'
+                    type: array
+                    title: OtherATMServices
+                    items:
+                      description: 'Enter a new code , name and description for any other ATM Service'
+                      type: object
+                      properties:
+                        Code:
+                          description: The four letter Mnemonic used within an XML file to identify a code
+                          title: Code
+                          type: string
+                          pattern: '^\w{0,4}$'
+                          minLength: 0
+                          maxLength: 4
+                        Name:
+                          description: Long name associated with the code
+                          title: Name
+                          type: string
+                          minLength: 1
+                          maxLength: 70
+                        Description:
+                          description: Description to describe the purpose of the code
+                          title: Description
+                          type: string
+                          minLength: 1
+                          maxLength: 350
+                      required:
+                        - Name
+                        - Description
+                    additionalProperties: false
+                  Branch:
+                    description: Information that locates and identifies a specific branch of a financial institution.
+                    type: object
+                    title: Branch
+                    properties:
+                      Identification:
+                        description: Unique and unambiguous identification of a branch of a financial institution.
+                        title: Identification
+                        type: string
+                        minLength: 1
+                        maxLength: 35
+                    additionalProperties: false
+                  Location:
+                    description: Location of the ATM.
+                    type: object
+                    title: Location
+                    properties:
+                      LocationCategory:
+                        description: Indicates the environment of the ATM.
+                        title: LocationCategory
+                        type: array
+                        items:
+                          description: Indicates the environment of the ATM.
+                          type: string
+                          enum:
+                            - BranchExternal
+                            - BranchInternal
+                            - BranchLobby
+                            - Other
+                            - RetailerOutlet
+                            - RemoteUnit
+                      OtherLocationCategory:
+                        description: 'Enter a new code , name and description for any other location category'
+                        type: array
+                        title: OtherLocationCategory
+                        items:
+                          description: 'Enter a new code , name and description for any other location category'
+                          type: object
+                          properties:
+                            Code:
+                              description: The four letter Mnemonic used within an XML file to identify a code
+                              title: Code
+                              type: string
+                              pattern: '^\w{0,4}$'
+                              minLength: 0
+                              maxLength: 4
+                            Name:
+                              description: Long name associated with the code
+                              title: Name
+                              type: string
+                              minLength: 1
+                              maxLength: 70
+                            Description:
+                              description: Description to describe the purpose of the code
+                              title: Description
+                              type: string
+                              minLength: 1
+                              maxLength: 350
+                          required:
+                            - Name
+                            - Description
+                        additionalProperties: false
+                      Site:
+                        description: Used by a Financial Institution internally to identify the location of an ATM.
+                        type: object
+                        title: Site
+                        properties:
+                          Identification:
+                            description: ATM site identification for the Financial Institution.
+                            title: Identification
+                            type: string
+                            minLength: 1
+                            maxLength: 35
+                          Name:
+                            description: ATM site name as used by Financial Institution.
+                            title: Name
+                            type: string
+                            minLength: 1
+                            maxLength: 140
+                        additionalProperties: false
+                      PostalAddress:
+                        description: 'Information that locates and identifies a specific address, as defined by postal services or in free format text.'
+                        type: object
+                        title: PostalAddress
+                        properties:
+                          AddressLine:
+                            description: 'Information that locates and identifies a specific address, as defined by postal services, that is presented in free format text.'
+                            title: AddressLine
+                            type: array
+                            items:
+                              description: maxLength 70 text
+                              type: string
+                              minLength: 1
+                              maxLength: 70
+                            minItems: 0
+                            maxItems: 7
+                          BuildingNumber:
+                            description: Name or Number that identifies the position of a building on a street.
+                            title: BuildingNumber
+                            type: string
+                            minLength: 1
+                            maxLength: 350
+                          StreetName:
+                            description: Name of a street or thoroughfare.
+                            title: StreetName
+                            type: string
+                            minLength: 1
+                            maxLength: 70
+                          TownName:
+                            description: 'Name of a built-up area, with defined boundaries, and a local government.'
+                            title: TownName
+                            type: string
+                            minLength: 1
+                            maxLength: 35
+                          CountrySubDivision:
+                            description: 'Identifies a subdivision of a country, for instance state, region, county.'
+                            title: CountrySubDivision
+                            type: array
+                            items:
+                              description: maxLength 35 text
+                              type: string
+                              minLength: 1
+                              maxLength: 35
+                            minItems: 0
+                            maxItems: 2
+                          Country:
+                            description: 'Nation with its own government, occupying a particular territory.'
+                            title: Country
+                            type: string
+                            pattern: '[A-Z]{2}'
+                          PostCode:
+                            description: Identifier consisting of a group of letters and/or numbers that is added to a postal address to assist the sorting of mail.
+                            title: PostCode
+                            type: string
+                            minLength: 1
+                            maxLength: 16
+                          GeoLocation:
+                            description: Geographic location of the ATM specified by geographic coordinates or UTM coordinates.
+                            type: object
+                            title: GeoLocation
+                            properties:
+                              GeographicCoordinates:
+                                description: Location on the earth specified by two numbers representing vertical and horizontal position.
+                                type: object
+                                title: GeographicCoordinates
+                                properties:
+                                  Latitude:
+                                    description: Latitude measured in decimal degrees.
+                                    title: Latitude
+                                    type: string
+                                    pattern: '^-?\d{1,3}\.\d{1,8}$'
+                                  Longitude:
+                                    description: |-
+                                      Angular measurement of the distance of a location on the earth east or west of the Greenwich observatory.
+                                      The longitude is measured in decimal degrees.
+                                    title: Longitude
+                                    type: string
+                                    pattern: '^-?\d{1,3}\.\d{1,8}$'
+                                additionalProperties: false
+                                required:
+                                  - Latitude
+                                  - Longitude
+                            additionalProperties: false
+                            required:
+                              - GeographicCoordinates
+                        additionalProperties: false
+                    additionalProperties: false
+                    required:
+                      - PostalAddress
+                required:
+                  - Identification
+                  - SupportedCurrencies
+                  - Location
+              additionalProperties: false
+              minItems: 1
+          required:
+            - BrandName
+            - ATM
+        additionalProperties: false
+        minItems: 1
+    required:
+      - Brand
+    description: Environment of the ATM.
+    type: object
+  ErrorDefinition400:
+    title: 400 Error object
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '400'
+      title:
+        type: string
+        enum:
+          - Bad request
+      description:
+        type: string
+        enum:
+          - You have sent a request which could not be understood.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  ErrorDefinition408:
+    title: 408 Error object
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '408'
+      title:
+        type: string
+        enum:
+          - Client timeout
+      description:
+        type: string
+        enum:
+          - 'Your client has failed to submit a request, and a timeout has occurred.'
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  ErrorDefinition429:
+    title: 429 Error object
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '429'
+      title:
+        type: string
+        enum:
+          - Too many requests
+      description:
+        type: string
+        enum:
+          - You have requested this resource too often. Slow down.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  ErrorDefinition500:
+    title: 500 Error object
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '500'
+      title:
+        type: string
+        enum:
+          - Internal server error
+      description:
+        type: string
+        enum:
+          - An error occurred on the server. No further information is available.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
+  ErrorDefinition503:
+    title: 503 Error object
+    type: object
+    properties:
+      status:
+        type: string
+        enum:
+          - '503'
+      title:
+        type: string
+        enum:
+          - Service temporarily unavailable
+      description:
+        type: string
+        enum:
+          - The service is temporarily unavailable.
+    required:
+      - status
+      - title
+      - description
+    additionalProperties: false
