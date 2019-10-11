@@ -12,9 +12,9 @@
   <h2>{{name}}</h2>
   <hr>
   <ul class="nav nav-pills nav-stacked">
-    <li><a href="#about">About</a></li>
+    <li><a href="#about">Overview</a></li>
     <li><a href="#documentation">Documentation</a></li>
-    <li><a href="#signup">Signup</a></li>
+    <li><a href="#signup">Subscribe</a></li>
     <li><a href="#terms">Terms and Conditions</a></li>
     <li><a href="#support">Support</a></li>
   </ul>
@@ -35,7 +35,9 @@
 <script id="aboutService2" type="text/template">
 {% raw %}
   <div id="about2">
-      <img src="/images/customer_main.png" alt="Customer logo" class="img-responsive center-block"/>
+      <h2>Overview </h2>
+      Stock API
+      <img src="/images/stock_api.png" alt="Customer logo" class="img-responsive center-block"/>
      </div>
 {% endraw %}
 </script>
@@ -43,7 +45,9 @@
 <script id="aboutService3" type="text/template">
 {% raw %}
   <div id="about2">
-      <img src="/images/payments.png" alt="Customer logo" class="img-responsive center-block"/>
+      <h2>Overview </h2>
+      Ticket API
+      <img src="/images/ticket_api.png" alt="Customer logo" class="img-responsive center-block"/>
      </div>
 {% endraw %}
 </script>
@@ -51,10 +55,21 @@
 
 <script id="documentationTpl" type="text/template">
 {% raw %}
-  <div id="documentation">
-    <h2>Interactive documentation</h2>
-      Making API documentation user friendly, interactive, intuitive, and clear.
-      <p id="swagger-ui-containers"></p>
+
+<div id="documentation">
+    <h1>Documentação de serviços</h1>
+    <br/>
+      <h2> Interactive documentation </h2>
+    <br/>
+    <br/>          
+      Making API documentation user friendly, interactive, intuitive, and clear.     
+      <select id="hosts" name="hosts">
+      <option selected="selected" value="stock-staging.api.5.9.49.249.xip.io">Sandbox</option>
+      <option value="stock-prod.api.5.9.49.249.xip.io">Production</option>
+    </select>
+    <br/>
+    <br/>              
+    <p id="swagger-ui-containers"></p>
   </div>
 {% endraw %}
 </script>
@@ -139,7 +154,11 @@
   <div id="terms">
     <h2>Terms and Conditions</h2>
       <p>
-        Lorem ipsum dolor sit amet, his utamur abhorreant contentiones ex, detraxit referrentur cu vim. Vim nulla denique efficiendi te, no nobis iudico debitis ius. Eum putant everti oportere te, tantas eirmod gloriatur pri no, eu has essent maiestatis. Inermis petentium reformidans ius ei, id eligendi deterruisset has. Sea ea modus virtute albucius.
+        We are excited that you are interested in participating in the Red Hat Developer Program ("the Program"). The Program allows you to deploy, free of charge, certain Red Hat Subscriptions for development purposes subject to the terms below. The Red Hat Subscriptions offered to you in this Program are unsupported, intended for development purposes only, are not intended for other purposes such as production environments without an active Red Hat Subscription(s) and may not address known security vulnerabilities.
+
+The following terms apply to you and/or your company if you choose to participate in the Program.
+
+By participating in the Program and accepting these terms, you represent that you will be using the Red Hat Subscriptions(s) for development purposes only, and Red Hat is relying on your representation as a condition of our providing you access to the Subscription(s). If you use the Red Hat Subscriptions for any other purposes, you are in violation of Red Hat’s Enterprise Agreement set forth below and are required to pay the applicable subscription fees, in addition to any and all other remedies available to Red Hat under applicable law.
       </p>
   </div>
 {% endraw %}
@@ -228,10 +247,10 @@
       console.log(data)
       APIS=data.apis
       console.log("SERVICE_ID",service_id)
-      if (service_id ==2){
+      if (service_id ==52){
        Handlebars.registerPartial("about", $("#aboutService2").html());
       }
-      if (service_id ==27){
+      if (service_id ==53){
        Handlebars.registerPartial("about", $("#aboutService3").html());
       }        
       API = filterArraybyThreescaleServiceId(APIS,service_id)
@@ -283,6 +302,7 @@
         $(domPreCodeId).each(function(i, e) {hljs.highlightBlock(e)});
         $("#api_info").toggle(); //hide api info section
         $(".footer").toggle(); // hide footer section
+         swaggerApi.setHost($('#hosts').val()); // Set SandBox or Production HOST
         $(".heading h2, .options").hide();
       },
       onFailure: function(data) {
@@ -291,6 +311,7 @@
       validatorUrl: null,
       docExpansion: "list",
       transport: function(httpClient, obj) {
+        obj.headers['X-Forwarded-Path'] = $('#hosts').val();
         return ApiDocsProxy.execute(httpClient, obj);
       }
     });

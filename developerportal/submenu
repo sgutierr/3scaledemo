@@ -3,7 +3,6 @@
   {% if current_user %}
     {% unless current_account.requires_credit_card_now? %}
       <ul class="nav navbar-nav">
-
         {% if provider.multiple_applications_allowed? %}
           <li class="{% if urls.applications.active? %}active{% endif %}">
             <a href="{{ urls.applications }}">{{ urls.applications.title }}</a>
@@ -33,13 +32,25 @@
             <a href="{{ urls.services }}">{{ urls.services.title }}</a>
           </li>
         {% endif %}
-         {% if current_account.name == 'SDG' %}
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe </a></li>
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/APICatalog/apilist">Search </a></li>  
-        {% else %}
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/APICatalog/apilist_public">Search </a></li>                 
+        {% if current_user.fields.type.value == 'Internal' %} 
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe APIs</a></li>
         {% endif %}
         <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/docs">Docs</a></li>
+        {% if current_user.fields.type.value == 'Internal' %} 
+        <li><a href="/APICatalog/apilist">Search</a></li>   
+        {% else %}
+        <li><a href="/APICatalog/apilist_public">Search</a></li>        
+        {% endif %}
+       
+        <!--
+        <li><a href="/doc_view_backend">MultipleBackends</a></li>   
+        <li class="{% if app.url.active? %}active{% endif %}">
+            <a href="/usecase1/main">UseCase1</a>
+        </li>
+        <li class="{% if app.url.active? %}active{% endif %}">
+            <a href="/usecase2/main">UseCase2</a>
+        </li>        
+        -->
       </ul>
     {% endunless %}
     <ul id="user_widget" class="nav navbar-nav navbar-right">
