@@ -4,7 +4,7 @@ info:
   description: Log API for Channel logs
   version: v1
 servers:
-  - url: https://container-gateway-https-route-gbipaas-caapigateway-test.paast.fw.garanti.com.tr/channels/technical/logs/v1/log
+  - url: https://echo.3scale.net
     description: Development Container Gateway URL on the Openshift
 paths:
   /channels/technical/logs/v1/log:
