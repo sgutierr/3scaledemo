@@ -1,90 +1,87 @@
 openapi: 3.0.0
 info:
-  title: Log API
-  description: Log API for Channel logs
-  version: v1
+    title: Log API
+    version: v1
+    description: Log API for Channel logs
 servers:
-  - url: https://echo.3scale.net
-    description: Development Container Gateway URL on the Openshift
+    -
+        url: echo.3scale.net
+        
+        description: Development Container Gateway URL on the Openshift
 paths:
-  /channels/technical/logs/v1/log:
-    post:
-      summary: Create a log record for Channel
-      description: Create a log record for Channel log
-      parameters:
-        - in: header
-          name: channel
-          schema:
-            type: string
-          required: true
-        - in: header
-          name: Authorization
-          schema:
-            type: string 
-        - in: header
-          name: ip
-          schema:
-            type: string
-          required: true
-        - in: header
-          name: dialect
-          schema:
-            type: string
-          required: true
-        - in: header
-          name: Content-Type
-          schema:
-            type: string
-          required: true
-        - in: header
-          name: companyId
-          schema:
-            type: string 
-      requestBody:
-        required: true
-        content:
-          application/json:
-            schema:
-              type: object
-              properties:
-                timeStamp:
-                  type: string
-                userAgent:
-                  type: string
-                deviceInfo:
-                  type: string
-                originURL:
-                  type: string 
-                operationComponent:
-                  type: string
-                logMask:
-                  type: string
-                hostNodeIp:
-                  type: string
-                userName:
-                  type: string
-                auditDescription:
-                  type: string
-                auditDetail:
-                  type: string                 
-      responses:
-        '200':
-          description: Return operation result.
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/result'
+    /channels/technical/logs/v1/log:
+        post:
+            requestBody:
+                content:
+                    application/json:
+                        schema:
+                            type: object
+                            properties:
+                                timeStamp:
+                                    type: string
+                                userAgent:
+                                    type: string
+                                deviceInfo:
+                                    type: string
+                                originURL:
+                                    type: string
+                                operationComponent:
+                                    type: string
+                                logMask:
+                                    type: string
+                                hostNodeIp:
+                                    type: string
+                                userName:
+                                    type: string
+                                auditDescription:
+                                    type: string
+                                auditDetail:
+                                    type: string
+                required: true
+            parameters:
+                -
+                    name: channel
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: ip
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: dialect
+                    schema:
+                        type: string
+                    in: header
+                    required: true
+                -
+                    name: companyId
+                    schema:
+                        type: string
+                    in: header
+            responses:
+                '200':
+                    content:
+                        application/json:
+                            schema:
+                                $ref: '#/components/schemas/result'
+                    description: Return operation result.
+            summary: Create a log record for Channel
+            description: Create a log record for Channel log
 components:
-  schemas:
-    result:
-       properties:
-        returnCode:
-          type: integer
-        reasonCode:
-          type: integer
-        messageText:
-          type: string 
-        '500':
-          description: Internal Server Error
-        default:
-          description: Unexpected error
+    schemas:
+        result:
+            properties:
+                '500':
+                    description: Internal Server Error
+                returnCode:
+                    type: integer
+                reasonCode:
+                    type: integer
+                messageText:
+                    type: string
+                default:
+                    description: Unexpected error
