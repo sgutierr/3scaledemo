@@ -1,0 +1,78 @@
+apiVersion: build.openshift.io/v1
+kind: Build
+metadata:
+  annotations:
+    openshift.io/build-config.name: cicd-demo-pipeline
+  labels:
+    app: cicd-demo-pipeline
+    buildconfig: cicd-demo-pipeline
+    name: cicd-demo-pipeline
+    openshift.io/build-config.name: cicd-demo-pipeline
+    openshift.io/build.start-policy: Serial
+    template: cicd-demo-pipeline
+  name: cicd-demo-pipeline-2
+  namespace: jenkins
+  ownerReferences:
+  - apiVersion: build.openshift.io/v1
+    controller: true
+    kind: BuildConfig
+    name: cicd-demo-pipeline
+    uid: cicd-demo-pipeline-123455
+spec:
+  nodeSelector: {}
+  output: {}
+  postCommit: {}
+  resources: {}
+  serviceAccount: builder
+  source:
+    git:
+      ref: master
+      uri: https://github.com/sgutierr/3scaledemo.git
+    type: Git
+  strategy:
+    jenkinsPipelineStrategy:
+      env:
+      - name: GIT_BRANCH
+        value: master
+      - name: GIT_REPO
+        value: https://github.com/sgutierr/3scaledemo.git
+      - name: DEV_PRIVATE_BASE_URL
+        value: https://echo-api.3scale.net:443
+      - name: PROD_PRIVATE_BASE_URL
+        value: https://echo-api.3scale.net
+      - name: DEV_PRODUCTION_PUBLIC_BASE_URL
+      - name: DEV_STAGING_PUBLIC_BASE_URL
+      - name: PROD_PRODUCTION_PUBLIC_BASE_URL
+      - name: PROD_STAGING_PUBLIC_BASE_URL
+      - name: API_BASE_SYSTEM_NAME
+        value: 3scale-mt-api0
+      - name: DEV_PROJECT
+        value: jenkins
+      - name: TEST_PROJECT
+        value: jenkins
+      - name: PROD_PROJECT
+        value: rh-prod
+      - name: IMAGE_NAMESPACE
+        value: jenkins
+      - name: SECRET_NAME
+        value: 3scale-toolbox
+      - name: TARGET_INSTANCE_DEV
+        value: openbanking-dev
+      - name: TARGET_INSTANCE_PROD
+        value: openbanking-prod
+      - name: DEV_DEVELOPER_ACCOUNT_ID
+        value: "3"
+      - name: PROD_DEVELOPER_ACCOUNT_ID
+        value: "7"
+      - name: DISABLE_TLS_VALIDATION
+        value: "yes"
+      - name: APPLICATION_NAME
+        value: openbanking-api
+      - name: OPENAPI_SPECIFICATION_FILE
+        value: openapi-spec-v2.0.json
+      - name: TOOLBOX_IMAGE_REGISTRY
+        value: quay.io/redhat/3scale-toolbox:v0.12.3
+      jenkinsfilePath: cicd/Jenkinsfile
+    type: JenkinsPipeline
+  triggeredBy:
+  - message: Manually triggered
