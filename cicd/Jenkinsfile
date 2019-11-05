@@ -47,7 +47,7 @@ node() {
 
     // create the ThreescaleService object from your API metadata manifest:
     service = toolbox.prepareThreescaleService(
-        openapi: [filename: "cicd-3scale/openbanking-api/" + params.OPENAPI_SPECIFICATION_FILE ],
+        openapi: [filename: "cicd/" + params.OPENAPI_SPECIFICATION_FILE ],
         environment: [ baseSystemName: params.API_BASE_SYSTEM_NAME,
                        publicBasePath: "/open-data/",
 					   privateBaseUrl: backend_service,
