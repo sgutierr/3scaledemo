@@ -85,9 +85,11 @@ parameters:
 - name: PROD_PRIVATE_BASE_URL
   required: true
 - name: DEV_PRODUCTION_PUBLIC_BASE_URL
-  #required: true
+  value: 'https://test2-3scale-apicast-production.api.5.9.49.249.xip.io'
+  required: true
 - name: DEV_STAGING_PUBLIC_BASE_URL
-  #required: true
+  value: 'https://test2-3scale-apicast-staging.api.5.9.49.249.xip.io'
+  required: true
 - name: PROD_PRODUCTION_PUBLIC_BASE_URL
   #required: true
 - name: PROD_STAGING_PUBLIC_BASE_URL
@@ -111,7 +113,7 @@ parameters:
   value: 3scale-toolbox
   required: true  
 - name: TARGET_INSTANCE_DEV
-  value: openbanking-dev
+  value: hetzner
   required: true  
 - name: TARGET_INSTANCE_PROD
   value: openbanking-prod
