@@ -1,7 +1,7 @@
 {
   "swagger" : "2.0",
   "info" : {
-    "title" : "Payment-API",
+    "title" : "PaymentAPI",
     "description" : "Payment DEMO API",
     "termsOfService" : "http://swagger.io/terms/",
     "contact" : {
