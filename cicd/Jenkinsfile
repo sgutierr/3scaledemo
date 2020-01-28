@@ -85,6 +85,52 @@ node() {
     service.promoteToProduction()
   }
 
+ stage("Deploy API in Prod") {
+
+    def envName = params.PROD_PROJECT
+    def app_name= params.APPLICATION_NAME
+    def backend_service = params.PROD_PRIVATE_BASE_URL
+	def stagingPublicBaseURL = params.PROD_STAGING_PUBLIC_BASE_URL
+	def productionPublicBaseURL = params.PROD_PRODUCTION_PUBLIC_BASE_URL
+
+    // Prepare
+    service = toolbox.prepareThreescaleService(
+        openapi: [filename: "cicd/" + params.OPENAPI_SPECIFICATION_FILE ],
+        environment: [ baseSystemName: params.API_BASE_SYSTEM_NAME,
+                       publicBasePath: "/open-data/",
+					   privateBaseUrl: backend_service,
+					   stagingPublicBaseURL: stagingPublicBaseURL,
+					   productionPublicBaseURL: productionPublicBaseURL,
+					   environmentName:  envName ],
+        toolbox: [ openshiftProject: params.NAMESPACE,
+                   destination: params.TARGET_INSTANCE_PROD,
+                   image: params.TOOLBOX_IMAGE_REGISTRY,
+                   insecure: params.DISABLE_TLS_VALIDATION == "yes",
+                   secretName: params.SECRET_NAME],
+        service: [:],
+        applications: [
+            [ name: "my-test-app", description: "This is used for tests", plan: "test", account: params.PROD_DEVELOPER_ACCOUNT_ID ]
+        ],
+        applicationPlans: [
+          [ systemName: "test", name: "Test", defaultPlan: true, published: true ]
+        ]
+    )
+    // Import OpenAPI
+    service.importOpenAPI()
+    echo "Service with system_name ${service.environment.targetSystemName} created !"
+
+    // Create an Application Plan
+    service.applyApplicationPlans()
+
+    // Create an Application
+    service.applyApplication()
+
+    // Run integration tests
+    runIntegrationTests(service)
+
+    // Promote to production
+    service.promoteToProduction()
+  }
 
 }
 
