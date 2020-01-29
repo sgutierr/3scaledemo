@@ -35,12 +35,18 @@ objects:
           value: ${GIT_REPO}
         - name: DEV_PRIVATE_BASE_URL
           value: ${DEV_PRIVATE_BASE_URL}
+        - name: TEST_PRIVATE_BASE_URL
+          value: ${TEST_PRIVATE_BASE_URL}          
         - name: PROD_PRIVATE_BASE_URL
           value: ${PROD_PRIVATE_BASE_URL}
         - name: DEV_PRODUCTION_PUBLIC_BASE_URL
           value: ${DEV_PRODUCTION_PUBLIC_BASE_URL}
         - name: DEV_STAGING_PUBLIC_BASE_URL
           value: ${DEV_STAGING_PUBLIC_BASE_URL}
+        - name: TEST_PRODUCTION_PUBLIC_BASE_URL
+          value: ${TEST_PRODUCTION_PUBLIC_BASE_URL}
+        - name: TEST_STAGING_PUBLIC_BASE_URL
+          value: ${TEST_STAGING_PUBLIC_BASE_URL}
         - name: PROD_PRODUCTION_PUBLIC_BASE_URL
           value: ${PROD_PRODUCTION_PUBLIC_BASE_URL}
         - name: PROD_STAGING_PUBLIC_BASE_URL
@@ -59,10 +65,14 @@ objects:
           value: ${SECRET_NAME}
         - name: TARGET_INSTANCE_DEV
           value: ${TARGET_INSTANCE_DEV}
+        - name: TARGET_INSTANCE_TEST
+          value: ${TARGET_INSTANCE_TEST}
         - name: TARGET_INSTANCE_PROD
           value: ${TARGET_INSTANCE_PROD}
         - name: DEV_DEVELOPER_ACCOUNT_ID
           value: ${DEV_DEVELOPER_ACCOUNT_ID}
+        - name: TEST_DEVELOPER_ACCOUNT_ID
+          value: ${TEST_DEVELOPER_ACCOUNT_ID}
         - name: PROD_DEVELOPER_ACCOUNT_ID
           value: ${PROD_DEVELOPER_ACCOUNT_ID}
         - name: DISABLE_TLS_VALIDATION
@@ -82,20 +92,30 @@ parameters:
   required: true
 - name: DEV_PRIVATE_BASE_URL
   required: true
+- name: TEST_PRIVATE_BASE_URL
+  required: true
 - name: PROD_PRIVATE_BASE_URL
   required: true
 - name: DEV_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://test2-3scale-apicast-production.api.5.9.49.249.xip.io'
+  value: 'https://api-prod.apps.istam-6b9a.open.redhat.com'
   required: true
 - name: DEV_STAGING_PUBLIC_BASE_URL
-  value: 'https://test2-3scale-apicast-staging.api.5.9.49.249.xip.io'
+  value: 'https://apipre.apps.istam-6b9a.open.redhat.com'
   required: true
+- name: TEST_PRODUCTION_PUBLIC_BASE_URL
+  value: 'https://pipe-prod-test.api.5.9.49.249.xip.io'
+  #required: true
+- name: TEST_STAGING_PUBLIC_BASE_URL
+  value: 'https://pipe-pre-test.api.5.9.49.249.xip.io'
+  #required: true  
 - name: PROD_PRODUCTION_PUBLIC_BASE_URL
+  value: 'https://pipe-prod.api.5.9.49.249.xip.io'
   #required: true
 - name: PROD_STAGING_PUBLIC_BASE_URL
+  value: 'https://pipe-pre.api.5.9.49.249.xip.io'
   #required: true
 - name: API_BASE_SYSTEM_NAME
-  value: 3scale-mt-api0
+  value: payment_api
   required: true
 - name: DEV_PROJECT
   required: true
@@ -113,17 +133,23 @@ parameters:
   value: 3scale-toolbox
   required: true  
 - name: TARGET_INSTANCE_DEV
-  value: hetzner
+  value: thy_dev
   required: true  
+- name: TARGET_INSTANCE_TEST
+  value: test
+  required: true
 - name: TARGET_INSTANCE_PROD
-  value: openbanking-prod
+  value: hetzner
   required: true
 - name: DEV_DEVELOPER_ACCOUNT_ID
   required: true
-  value: "5"
+  value: "3"
+- name: TEST_DEVELOPER_ACCOUNT_ID
+  required: true
+  value: "2445581796198"  
 - name: PROD_DEVELOPER_ACCOUNT_ID
   required: true
-  value: "7"
+  value: "3"
 - name: DISABLE_TLS_VALIDATION
   value: "yes"
 - name: APPLICATION_NAME
