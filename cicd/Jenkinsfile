@@ -126,10 +126,10 @@ node() {
     service.applyApplication()
 
     // Run integration tests
-    runIntegrationTests(service)
+    // runIntegrationTests(service)
 
     // Promote to production
-    service.promoteToProduction()
+    // service.promoteToProduction()
   }
 
 
