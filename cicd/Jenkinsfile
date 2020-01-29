@@ -125,11 +125,6 @@ node() {
     // Create an Application
     service.applyApplication()
 
-    // Run integration tests
-    // runIntegrationTests(service)
-
-    // Promote to production
-    // service.promoteToProduction()
   }
 
 
