@@ -97,35 +97,35 @@ parameters:
 - name: PROD_PRIVATE_BASE_URL
   required: true
 - name: DEV_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://api-prod.apps.istam-6b9a.open.redhat.com'
+  value: 'https://oapi-p-v3-dev.apps.istam-6b9a.open.redhat.com'
   required: true
 - name: DEV_STAGING_PUBLIC_BASE_URL
-  value: 'https://apipre.apps.istam-6b9a.open.redhat.com'
+  value: 'https://oapi-s-v3-dev.istam-6b9a.open.redhat.com'
   required: true
 - name: TEST_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://pipe-prod-test.api.5.9.49.249.xip.io'
-  #required: true
+  value: 'https://oapi-p-v3-test.api.5.9.49.249.xip.io'
+  required: true
 - name: TEST_STAGING_PUBLIC_BASE_URL
-  value: 'https://pipe-pre-test.api.5.9.49.249.xip.io'
-  #required: true  
+  value: 'https://oapi-s-v3-test.api.5.9.49.249.xip.io'
+  required: true  
 - name: PROD_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://pipe-prod.api.5.9.49.249.xip.io'
-  #required: true
+  value: 'https://oapi-p-v3-prod.5.9.49.249.xip.io'
+  required: true
 - name: PROD_STAGING_PUBLIC_BASE_URL
-  value: 'https://pipe-pre.api.5.9.49.249.xip.io'
-  #required: true
+  value: 'https://oapi-p-v3-prod.api.5.9.49.249.xip.io'
+  required: true
 - name: API_BASE_SYSTEM_NAME
   value: payment_api
   required: true
 - name: DEV_PROJECT
   required: true
-  value: jenkins
+  value: DEV
 - name: TEST_PROJECT
   required: true
-  value: jenkins
+  value: TEST
 - name: PROD_PROJECT
   required: true
-  value: openbanking-api-prod
+  value: PROD
 - name: IMAGE_NAMESPACE
   required: true
   value: openbanking-cicd
