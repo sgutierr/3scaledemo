@@ -100,7 +100,7 @@ parameters:
   value: 'https://oapi-p-v3-dev.apps.istam-6b9a.open.redhat.com'
   required: true
 - name: DEV_STAGING_PUBLIC_BASE_URL
-  value: 'https://oapi-s-v3-dev.istam-6b9a.open.redhat.com'
+  value: 'https://oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com'
   required: true
 - name: TEST_PRODUCTION_PUBLIC_BASE_URL
   value: 'https://oapi-p-v3-test.api.5.9.49.249.xip.io'
@@ -109,10 +109,10 @@ parameters:
   value: 'https://oapi-s-v3-test.api.5.9.49.249.xip.io'
   required: true  
 - name: PROD_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://oapi-p-v3-prod.5.9.49.249.xip.io'
+  value: 'https://oapi-p-v3-prod.api.5.9.49.249.xip.io'
   required: true
 - name: PROD_STAGING_PUBLIC_BASE_URL
-  value: 'https://oapi-p-v3-prod.api.5.9.49.249.xip.io'
+  value: 'https://oapi-s-v3-prod.api.5.9.49.249.xip.io'
   required: true
 - name: API_BASE_SYSTEM_NAME
   value: payment_api
