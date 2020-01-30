@@ -13,7 +13,7 @@
     },
     "version": "4.0.0"
   },
-  "host": "oapi-p-v4-dev.apps.istam-6b9a.open.redhat.com:443",
+  "host": "oapi-s-v4-dev.apps.istam-6b9a.open.redhat.com",
   "basePath": "/open-data/",
   "schemes": [
     "https"
@@ -365,8 +365,8 @@
     "apikey": {
       "type": "apiKey",
       "description": "Use a 3scale API Key",
-      "name": "api-key",
-      "in": "header"
+      "name": "user_key",
+      "in": "parameter"
     }
   },
   "security": [
