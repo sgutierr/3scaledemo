@@ -35,7 +35,7 @@
         }
       },
       "parameters": [
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
+        {"name":"api-key","in":"query","description":"api-key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
      ]      
     },
     "/banks/{bank_id}": {
@@ -54,7 +54,7 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {"name":"user_key","in":"header","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
       ]
     },
     "/banks/{bank_id}/atms": {
