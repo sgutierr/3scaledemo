@@ -1,0 +1,141 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "open-data-apis v3.0.0",
+    "description": "Open Banking open data apis",
+    "contact": {
+      "name": "Red Hat",
+      "email": "3scale@redhat.com"
+    },
+    "license": {
+      "name": "GNU GPLv3",
+      "url": "https://www.gnu.org/licenses/gpl.txt"
+    },
+    "version": "3.0.0"
+  },
+  "host": "oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com",
+  "basePath": "/open-data/",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/banks": {
+      "get": {
+        "description": "get list of banks",
+        "responses": {
+          "200": {
+            "description": "get list of available banks"
+          }
+        }
+      },
+      "parameters": [
+        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
+     ]      
+    },
+    "/banks/{bank_id}": {
+      "get": {
+        "description": "get bank details",
+        "responses": {
+          "200": {
+            "description": "list of bank details given the bank id"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "bank_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+      ]
+    },
+    "/banks/{bank_id}/atms": {
+      "get": {
+        "description": "get bank atms",
+        "responses": {
+          "200": {
+            "description": "get list of atms given bank id"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "bank_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+      ]
+    },
+    "/banks/{bank_id}/branches/{branch_id}": {
+      "get": {
+        "description": "get branch info",
+        "responses": {
+          "200": {
+            "description": "returns branch info given branch and bank id"
+          }
+        }
+      },
+      "parameters": [
+        {
+          "name": "bank_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        },
+        {
+          "name": "branch_id",
+          "in": "path",
+          "required": true,
+          "type": "string"
+        }
+      ]
+    }
+  },
+  "securityDefinitions": {
+    "apikey": {
+      "type": "apiKey",
+      "description": "Use a 3scale API Key",
+      "name": "user_key",
+      "in": "parameter"
+    }
+  },
+  "security": [
+    {
+      "apikey": [
+
+      ]
+    }
+  ],
+  "tags": [
+    {
+      "name": "PSD2",
+      "description": ""
+    },
+    {
+      "name": "Open Banking",
+      "description": ""
+    },
+    {
+      "name": "Branch",
+      "description": ""
+    },
+    {
+      "name": "ATM",
+      "description": ""
+    },
+    {
+      "name": "Product",
+      "description": ""
+    }
+  ]
+}
