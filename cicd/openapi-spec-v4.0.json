@@ -213,7 +213,15 @@
           "in": "path",
           "required": true,
           "type": "string"
-        }
+        },
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
       ]
     },
     "/banks/{bank_id}/atms/{atm_id}": {
@@ -238,7 +246,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }
       ]
     },
     "/banks": {
@@ -251,7 +266,14 @@
         }
       },
       "parameters": [
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
      ]      
     },
     "/banks/{bank_id}": {
@@ -270,7 +292,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
       ]
     },
     "/banks/{bank_id}/atms": {
@@ -289,7 +318,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }
       ]
     },
     "/banks/{bank_id}/branches/{branch_id}": {
@@ -313,7 +349,15 @@
           "in": "path",
           "required": true,
           "type": "string"
-        }
+        },
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
       ]
     },
     "/banks/{bank_id}/products": {
@@ -332,7 +376,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
       ]
     },
     "/banks/{bank_id}/products/{product_id}": {
@@ -357,7 +408,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }        
       ]
     }
   },
