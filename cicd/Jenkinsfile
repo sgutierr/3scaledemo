@@ -17,7 +17,9 @@ node() {
   stage('Pre-requisites') {
     if (params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v1.0.json"
      && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v1.1.json"
-     && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v2.0.json") {
+     && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v2.0.json"
+     && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v3.0.json"
+     && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v4.0.json"  ) {
 
       echo """
       Please specify the OpenAPI Specification filename you want to deploy:
@@ -26,6 +28,8 @@ node() {
       - openapi-spec-v1.0.yaml => 1 methods, API Key
       - openapi-spec-v1.1.yaml => 2 methods, API Key
       - openapi-spec-v2.0.yaml => 3 methods, API Key
+      - openapi-spec-v3.0.yaml => 3 methods, API Key
+      - openapi-spec-v4.0.yaml => 3 methods, API Key
 
       Use the OPENAPI_SPECIFICATION_FILE parameter to pass the OpenAPI Specification filename you want to deploy.
       """
