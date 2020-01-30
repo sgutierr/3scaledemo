@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "open-data-apis v3.0.0",
+    "title": "open-data-apis v3.0.0 (TEST, v3.0.0)",
     "description": "Open Banking open data apis",
     "contact": {
       "name": "Red Hat",
@@ -13,7 +13,7 @@
     },
     "version": "3.0.0"
   },
-  "host": "oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com",
+  "host": "oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com:443",
   "basePath": "/open-data/",
   "schemes": [
     "https"
@@ -35,8 +35,15 @@
         }
       },
       "parameters": [
-        {"name":"api-key","in":"query","description":"api-key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
-     ]      
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }
+      ]
     },
     "/banks/{bank_id}": {
       "get": {
@@ -54,7 +61,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"header","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }
       ]
     },
     "/banks/{bank_id}/atms": {
@@ -73,7 +87,14 @@
           "required": true,
           "type": "string"
         },
-        {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}        
+        {
+          "name": "api-key",
+          "in": "header",
+          "description": "api-key",
+          "required": false,
+          "type": "string",
+          "x-data-threescale-name": "user_keys"
+        }
       ]
     },
     "/banks/{bank_id}/branches/{branch_id}": {
