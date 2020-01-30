@@ -366,7 +366,7 @@
       "type": "apiKey",
       "description": "Use a 3scale API Key",
       "name": "user_key",
-      "in": "parameter"
+      "in": "query"
     }
   },
   "security": [
