@@ -1,7 +1,7 @@
 {
   "swagger": "2.0",
   "info": {
-    "title": "open-data-apis (TEST, v4.0.0)",
+    "title": "open-data-apis v4.0.0",
     "description": "Open Banking open data apis",
     "contact": {
       "name": "Red Hat",
