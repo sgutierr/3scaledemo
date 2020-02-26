@@ -2,12 +2,12 @@
     "swagger": "2.0",
     "info": {
         "title": "Open Data APIs",
-        "version": "1.1.0",
         "description": "OpenBanking Open Data APIs",
         "license": {
             "name": "GNU GPLv3",
             "url": "https://www.gnu.org/licenses/gpl.txt"
-        }
+        },
+        "version": "1.1.0"
     },
     "host": "opendata.api.5.9.49.249.xip.io",
     "basePath": "/open-data",
@@ -23,6 +23,16 @@
     "paths": {
         "/banks/{bank_id}/branches": {
             "get": {
+                "description": "get branches available by a specific bank",
+                "operationId": "7df4c9c4-fed4-4d34-bfbd-7bf4ddaebcdd",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "list of branches",
@@ -172,81 +182,131 @@
                             }
                         }
                     }
-                },
-                "description": "get branches available by a specific bank"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         },
         "/banks/{bank_id}/atms/{atm_id}": {
             "get": {
+                "description": "get atm info",
+                "operationId": "c617fb31-2745-4950-8f83-56b000ff6aad",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "atm_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "get atm info given atm and bank id"
+                        "description": "get atm info given atm and bank id",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
                     }
-                },
-                "description": "get atm info"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "atm_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         },
         "/banks": {
             "get": {
+                "description": "get list of banks",
+                "operationId": "e95e9cc1-20bc-4ceb-81d1-04746841d417",
+                "parameters": [
+                    {
+                        "name": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "get list of available banks"
+                        "description": "get list of available banks",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Bank"
+                            }
+                        },
+                        "examples": {
+                            "application/json": [
+                                {
+                                    "id": "some text",
+                                    "short_name": "some text",
+                                    "full_name": "some text",
+                                    "logo": "some text",
+                                    "website": "some text",
+                                    "bank_routing": {
+                                        "scheme": "some text",
+                                        "address": "some text"
+                                    }
+                                },
+                                {
+                                    "id": "some text",
+                                    "short_name": "some text",
+                                    "full_name": "some text",
+                                    "logo": "some text",
+                                    "website": "some text",
+                                    "bank_routing": {
+                                        "scheme": "some text",
+                                        "address": "some text"
+                                    }
+                                }
+                            ]
+                        }
                     }
-                },
-                "description": "get list of banks"
-            },
-            "parameters": [
-                {
-                    "name": "user_key",
-                    "in": "query",
-                    "required": false,
-                    "type": "string",
-                    "x-data-threescale-name": "user_keys"
                 }
-            ]
+            }
         },
         "/banks/{bank_id}": {
             "get": {
+                "description": "get bank details",
+                "operationId": "0b8117f5-284e-469b-9978-cab45d1e6f5e",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "list of bank details given the bank id"
+                        "description": "list of bank details given the bank id",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
                     }
-                },
-                "description": "get bank details"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         },
         "/banks/{bank_id}/atms": {
             "get": {
+                "description": "get bank atms",
+                "operationId": "8cd0d512-aca6-40e1-b753-33efa3d81d12",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "description": "Bank id",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    }
+                ],
                 "responses": {
                     "200": {
                         "description": "get list of atms given bank id",
@@ -269,91 +329,125 @@
                             ]
                         }
                     }
-                },
-                "description": "get bank atms"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "description": "Bank id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "user_key",
-                    "in": "query",
-                    "required": false,
-                    "type": "string",
-                    "x-data-threescale-name": "user_keys"
                 }
-            ]
+            },
+            "post": {
+                "operationId": "atmlistset",
+                "parameters": [
+                    {
+                        "name": "body",
+                        "in": "body",
+                        "description": "Request body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/ATMS"
+                        }
+                    },
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Response Ok",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
+                    },
+                    "201": {
+                        "description": "ATM list creation",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "repsonse": "some text"
+                            }
+                        }
+                    }
+                }
+            }
         },
         "/banks/{bank_id}/branches/{branch_id}": {
             "get": {
+                "description": "get branch info",
+                "operationId": "0f933ee9-c3ff-46c1-a596-ebb2d1267cf0",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "branch_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "returns branch info given branch and bank id"
+                        "description": "returns branch info given branch and bank id",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
                     }
-                },
-                "description": "get branch info"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "branch_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         },
         "/banks/{bank_id}/products": {
             "get": {
+                "description": "get products",
+                "operationId": "a78bc8ee-cf2d-4023-8c5a-d854043f2753",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "get products available in a given bank"
+                        "description": "get products available in a given bank",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
                     }
-                },
-                "description": "get products"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         },
         "/banks/{bank_id}/products/{product_id}": {
             "get": {
+                "description": "get product info",
+                "operationId": "2b99962a-7275-4d09-8993-bc87b659bd60",
+                "parameters": [
+                    {
+                        "name": "bank_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    },
+                    {
+                        "name": "product_id",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
                 "responses": {
                     "200": {
-                        "description": "get product info given a bank and product id"
+                        "description": "get product info given a bank and product id",
+                        "schema": {
+                            "$ref": "#/definitions/Response"
+                        }
                     }
-                },
-                "description": "get product info"
-            },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "product_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
                 }
-            ]
+            }
         }
     },
     "definitions": {
@@ -370,6 +464,60 @@
                     "type": "string"
                 }
             }
+        },
+        "Response": {
+            "description": "OpenBanking response",
+            "type": "object",
+            "properties": {
+                "repsonse": {
+                    "type": "string"
+                }
+            }
+        },
+        "ATMS": {
+            "type": "object",
+            "properties": {
+                "atms": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/ATM"
+                    }
+                }
+            }
+        },
+        "Bank": {
+            "title": "Root Type for Bank",
+            "description": "The root of the Bank type's schema.",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "short_name": {
+                    "type": "string"
+                },
+                "full_name": {
+                    "type": "string"
+                },
+                "logo": {
+                    "type": "string"
+                },
+                "website": {
+                    "type": "string"
+                },
+                "bank_routing": {
+                    "type": "object",
+                    "properties": {
+                        "scheme": {
+                            "type": "string"
+                        },
+                        "address": {
+                            "type": "string"
+                        }
+                    }
+                }
+            },
+            "example": "{\n    \"id\": \"psd201-bank-x--uk\",\n    \"short_name\": \"Bank X\",\n    \"full_name\": \"The Bank of X\",\n    \"logo\": \"https://static.openbankproject.com/images/sandbox/bank_x.png\",\n    \"website\": \"https://www.example.com\",\n    \"bank_routing\": {\n        \"scheme\": \"OBP\",\n        \"address\": \"psd201-bank-x--uk\"\n    }\n}"
         }
     },
     "securityDefinitions": {
