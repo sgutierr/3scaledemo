@@ -1,0 +1,66 @@
+{% cdn_asset /swagger-ui/2.2.10/swagger-ui.js %}
+{% cdn_asset /swagger-ui/2.2.10/swagger-ui.css %}
+
+{% include 'shared/swagger_ui' %}
+
+<div class="api-list-container" style="display: none;">
+ <h2>
+API Documentation</h2>
+  <h3>Technical content deliverable, containing instructions about how to use and integrate with an API. It’s a concise reference manual containing all the information required to work with the API, with details about the functions, classes, return types, arguments and more, supported by tutorials and examples.</h3>
+ </div> 
+  <table>
+    <td><h2>Find below your REST APIs documentation: </h2></td>
+    <td><a class="navbar-brand" href="/"><img src="/images/rest.png" alt="REST logo" width="60" height="30"></a></td>
+  </table>  
+   <div class="DashboardSection-title DashboardSection-toggle documentation">
+     <ul class="api-list">
+  </ul>
+</div>   
+    <div>
+  <table>
+    <td><h2>Find below your SOAP WS documentation: </h2></td>
+    <td><a class="navbar-brand" href="/"><img src="/images/soap.png" alt="SOAP logo" width="60" height="30"></a></td>
+  </table>  
+    <ul class="DashboardSection-title DashboardSection-toggle documentation">
+    <li><a href="/soapws/soapdoc">SOAP WS example </a></li>   
+    <li><a href="/soapws/soapdocs1">SOAP WS S1 </a></li>  
+  </ul>
+</div>  
+
+<script type="text/javascript">
+  var services = {
+  {% assign items = provider.services |map: "system_name" %}
+  {% for system_name in items %}
+  {% if provider.api_specs[system_name] %}
+  "{{ system_name }}": {
+    name: "{{ provider.services[system_name].name|url_encode }}",
+    url: "{{ provider.api_specs[system_name].url }}",
+    description: "{{ provider.services[system_name].description|url_encode }}" 
+  },
+  {% endif %}
+  {% endfor %}
+  };
+
+     
+  $( document ).ready(function() {
+    var searchParams = new URLSearchParams(window.parent.location.search) ;
+    if (searchParams.has("api")) {
+      var api = searchParams.get("api");
+      $(".api-list-container").css("display", "none");
+      window.swaggerUi.options['url'] = services[api].url;
+      window.swaggerUi.load();
+    } else {
+      $(".api-list-container").css("display", "block");
+      var system_names = Object.keys(services).sort();
+      for (var i = 0; i < system_names.length; i++) { 
+        var name = system_names[i]; // system_name
+        if (services[system_names[i]].name != null) { // if present, name is a better option
+          name = decodeURIComponent(services[system_names[i]].name.replace(/\+/g, '%20')) + ": " + decodeURIComponent(services[system_names[i]].description.replace(/\+/g, '%20'));
+        }
+        $("<a>", { "href": "?api=" + system_names[i], text: name }).appendTo($("<li>").appendTo($(".api-list")));
+      }
+    }
+  });
+  
+</script>
+
