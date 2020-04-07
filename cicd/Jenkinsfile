@@ -134,7 +134,7 @@ node() {
 
  stage("Deploy API in PREPROD") {
 
-    def envName = params.PROD_PROJECT
+ /*   def envName = params.PROD_PROJECT
     def app_name= params.APPLICATION_NAME
     def backend_service = params.PROD_PRIVATE_BASE_URL
 	def stagingPublicBaseURL = params.PROD_STAGING_PUBLIC_BASE_URL
@@ -178,7 +178,7 @@ node() {
     // Promote to production
     service.promoteToProduction()
   }
-
+  */
 }
 
 def runIntegrationTests(def service) {
