@@ -134,7 +134,7 @@ node() {
 
  stage("Deploy API in PREPROD") {
 
- /*   def envName = params.PROD_PROJECT
+   def envName = params.PROD_PROJECT
     def app_name= params.APPLICATION_NAME
     def backend_service = params.PROD_PRIVATE_BASE_URL
 	def stagingPublicBaseURL = params.PROD_STAGING_PUBLIC_BASE_URL
@@ -162,23 +162,6 @@ node() {
           [ systemName: "test", name: "Test", defaultPlan: true, published: true ]
         ]
     )
-    // Import OpenAPI
-    service.importOpenAPI()
-    echo "Service with system_name ${service.environment.targetSystemName} created !"
-
-    // Create an Application Plan
-    service.applyApplicationPlans()
-
-    // Create an Application
-    service.applyApplication()
-
-    // Run integration tests
-    runIntegrationTests(service)
-
-    // Promote to production
-    service.promoteToProduction()
-  }
-  */
 }
 
 def runIntegrationTests(def service) {
