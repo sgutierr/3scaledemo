@@ -11,7 +11,7 @@
       "name": "GNU GPLv3",
       "url": "https://www.gnu.org/licenses/gpl.txt"
     },
-    "version": "3.1.0"
+    "version": "3.2.0"
   },
   "host": "oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com:443",
   "basePath": "/open-data/",
