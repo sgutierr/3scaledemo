@@ -1,0 +1,315 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "test",
+        "version": "1.0.0",
+        "contact": {
+
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "paths": {
+        "/banks": {
+            "summary": "Path used to manage the list of banks.",
+            "description": "The REST endpoint/path used to list and create zero or more `Bank` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Bank"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Bank` entities."
+                    }
+                },
+                "operationId": "getbanks",
+                "summary": "List All banks",
+                "description": "Gets a list of all `Bank` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Bank` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bank"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createBank",
+                "summary": "Create a Bank",
+                "description": "Creates a new instance of a `Bank`."
+            }
+        },
+        "/banks/{bankId}": {
+            "summary": "Path used to manage a single Bank.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Bank`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Bank"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Bank`."
+                    }
+                },
+                "operationId": "getBank",
+                "summary": "Get a Bank",
+                "description": "Gets the details of a single instance of a `Bank`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Bank` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Bank"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateBank",
+                "summary": "Update a Bank",
+                "description": "Updates an existing `Bank`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteBank",
+                "summary": "Delete a Bank",
+                "description": "Deletes an existing `Bank`."
+            },
+            "parameters": [
+                {
+                    "name": "bankId",
+                    "description": "A unique identifier for a `Bank`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/atms": {
+            "summary": "Path used to manage the list of atms.",
+            "description": "The REST endpoint/path used to list and create zero or more `ATM` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/ATM"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `ATM` entities."
+                    }
+                },
+                "operationId": "getatms",
+                "summary": "List All atms",
+                "description": "Gets a list of all `ATM` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `ATM` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ATM"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createATM",
+                "summary": "Create a ATM",
+                "description": "Creates a new instance of a `ATM`."
+            }
+        },
+        "/atms/{atmId}": {
+            "summary": "Path used to manage a single ATM.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `ATM`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ATM"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `ATM`."
+                    }
+                },
+                "operationId": "getATM",
+                "summary": "Get a ATM",
+                "description": "Gets the details of a single instance of a `ATM`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `ATM` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/ATM"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateATM",
+                "summary": "Update a ATM",
+                "description": "Updates an existing `ATM`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteATM",
+                "summary": "Delete a ATM",
+                "description": "Deletes an existing `ATM`."
+            },
+            "parameters": [
+                {
+                    "name": "atmId",
+                    "description": "A unique identifier for a `ATM`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Bank": {
+                "title": "Root Type for Bank",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "short_name": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "logo": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "bank_routing": {
+                        "type": "object",
+                        "properties": {
+                            "scheme": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "id": "psd201-bank-x--uk",
+                    "short_name": "Bank X",
+                    "full_name": "The Bank of X",
+                    "logo": "https://static.openbankproject.com/images/sandbox/bank_x.png",
+                    "website": "https://www.example.com",
+                    "bank_routing": {
+                        "scheme": "OBP",
+                        "address": "psd201-bank-x--uk"
+                    }
+                }
+            },
+            "ATM": {
+                "title": "Root Type for ATM",
+                "description": "",
+                "type": "array",
+                "items": {
+                    "type": "object",
+                    "properties": {
+                        "bankid": {
+                            "type": "string"
+                        },
+                        "atmdescription": {
+                            "type": "string"
+                        }
+                    }
+                },
+                "example": [
+                    {
+                        "bankid": "some text",
+                        "atmdescription": "some text"
+                    }
+                ]
+            }
+        },
+        "securitySchemes": {
+            "api-security": {
+                "type": "apiKey",
+                "name": "user-key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "api-security": [
+            ]
+        }
+    ]
+}
