@@ -19,6 +19,7 @@ node() {
      && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v1.1.json"
      && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v2.0.json"
      && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v3.0.json"
+     && params.OPENAPI_SPECIFICATION_FILE != "insurance-spec.json"
      && params.OPENAPI_SPECIFICATION_FILE != "openapi-spec-v4.0.json"  ) {
 
       echo """
@@ -81,6 +82,9 @@ node() {
 
     // Create an Application
     service.applyApplication()
+	
+    // Wait for saving setup	  
+    sleep(time:10,unit:"SECONDS")
 
     // Run integration tests
     runIntegrationTests(service)
