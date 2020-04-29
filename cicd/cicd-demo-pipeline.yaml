@@ -159,4 +159,4 @@ parameters:
   required: true
 - name: TOOLBOX_IMAGE_REGISTRY
   required: true
-  value: "quay.io/redhat/3scale-toolbox:v0.12.3"
+  value: "quay.io/redhat/3scale-toolbox:latest"
