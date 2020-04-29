@@ -1,167 +1,244 @@
 {
-    "swagger": "2.0",
+    "openapi": "3.0.2",
     "info": {
-        "title": "open-data-apis v3.0.0",
-        "version": "3.6.0",
-        "description": "Open Banking open data apis",
+        "title": "openInsuranceAPI",
+        "version": "0.8.0",
+        "description": "open insurance API",
         "contact": {
-            "name": "Red Hat",
-            "email": "3scale@redhat.com"
+            "email": "sgutierr@redhat.com"
         },
         "license": {
-            "name": "GNU GPLv3",
-            "url": "https://www.gnu.org/licenses/gpl.txt"
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
         }
     },
-    "host": "oapi-s-v3-dev.apps.istam-6b9a.open.redhat.com:443",
-    "basePath": "/open-data/",
-    "schemes": [
-        "https"
-    ],
-    "consumes": [
-        "application/json"
-    ],
-    "produces": [
-        "application/json"
-    ],
     "paths": {
         "/banks": {
+            "summary": "Path used to manage the list of banks.",
+            "description": "The REST endpoint/path used to list and create zero or more `bank` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
             "get": {
                 "responses": {
                     "200": {
-                        "description": "get list of available banks"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/bank"
+                                    }
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": [
+                                            {
+                                                "id": "some text",
+                                                "short_name": "some text",
+                                                "full_name": "some text",
+                                                "logo": "some text",
+                                                "website": "some text",
+                                                "bank_routing": {
+                                                    "scheme": "some text",
+                                                    "address": "some text"
+                                                }
+                                            },
+                                            {
+                                                "id": "some text",
+                                                "short_name": "some text",
+                                                "full_name": "some text",
+                                                "logo": "some text",
+                                                "website": "some text",
+                                                "bank_routing": {
+                                                    "scheme": "some text",
+                                                    "address": "some text"
+                                                }
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `bank` entities."
                     }
                 },
-                "description": "get list of banks"
+                "operationId": "getbanks",
+                "summary": "List All banks",
+                "description": "Gets a list of all `bank` entities."
             },
-            "parameters": [
-                {
-                    "name": "api-key",
-                    "description": "api-key",
-                    "in": "header",
-                    "required": false,
-                    "type": "string",
-                    "x-data-threescale-name": "user_keys"
-                }
-            ]
+            "post": {
+                "requestBody": {
+                    "description": "A new `bank` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/bank"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createbank",
+                "summary": "Create a bank",
+                "description": "Creates a new instance of a `bank`."
+            }
         },
-        "/banks/{bank_id}": {
+        "/banks/{bankId}": {
+            "summary": "Path used to manage a single bank.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `bank`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
             "get": {
                 "responses": {
                     "200": {
-                        "description": "list of bank details given the bank id"
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/bank"
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": {
+                                            "id": "some text",
+                                            "short_name": "some text",
+                                            "full_name": "some text",
+                                            "logo": "some text",
+                                            "website": "some text",
+                                            "bank_routing": {
+                                                "scheme": "some text",
+                                                "address": "some text"
+                                            }
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `bank`."
                     }
                 },
-                "description": "get bank details"
+                "operationId": "getbank",
+                "summary": "Get a bank",
+                "description": "Gets the details of a single instance of a `bank`."
             },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
+            "put": {
+                "requestBody": {
+                    "description": "Updated `bank` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/bank"
+                            }
+                        }
+                    },
+                    "required": true
                 },
-                {
-                    "name": "api-key",
-                    "description": "api-key",
-                    "in": "header",
-                    "required": false,
-                    "type": "string",
-                    "x-data-threescale-name": "user_keys"
-                }
-            ]
-        },
-        "/banks/{bank_id}/atms": {
-            "get": {
                 "responses": {
-                    "200": {
-                        "description": "get list of atms given bank id"
+                    "202": {
+                        "description": "Successful response."
                     }
                 },
-                "description": "get bank atms"
+                "operationId": "updatebank",
+                "summary": "Update a bank",
+                "description": "Updates an existing `bank`."
             },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "api-key",
-                    "description": "api-key",
-                    "in": "header",
-                    "required": false,
-                    "type": "string",
-                    "x-data-threescale-name": "user_keys"
-                }
-            ]
-        },
-        "/banks/{bank_id}/branches/{branch_id}": {
-            "get": {
+            "delete": {
                 "responses": {
-                    "200": {
-                        "description": "returns branch info given branch and bank id"
+                    "204": {
+                        "description": "Successful response."
                     }
                 },
-                "description": "get branch info"
+                "operationId": "deletebank",
+                "summary": "Delete a bank",
+                "description": "Deletes an existing `bank`."
             },
             "parameters": [
                 {
-                    "name": "bank_id",
+                    "examples": {
+                        "example1": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "bankId",
+                    "description": "A unique identifier for a `bank`.",
+                    "schema": {
+                        "type": "string"
+                    },
                     "in": "path",
-                    "required": true,
-                    "type": "string"
-                },
-                {
-                    "name": "branch_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
+                    "required": true
                 }
             ]
         }
     },
-    "definitions": {
-        "bank": {
-            "description": "",
-            "type": "object"
-        }
-    },
-    "securityDefinitions": {
-        "apikey": {
-            "type": "apiKey",
-            "description": "Use a 3scale API Key",
-            "name": "api-key",
-            "in": "header"
+    "components": {
+        "schemas": {
+            "bank": {
+                "title": "Root Type for bank",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "short_name": {
+                        "type": "string"
+                    },
+                    "full_name": {
+                        "type": "string"
+                    },
+                    "logo": {
+                        "type": "string"
+                    },
+                    "website": {
+                        "type": "string"
+                    },
+                    "bank_routing": {
+                        "type": "object",
+                        "properties": {
+                            "scheme": {
+                                "type": "string"
+                            },
+                            "address": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                },
+                "example": {
+                    "id": "psd201-bank-x--uk",
+                    "short_name": "Bank X",
+                    "full_name": "The Bank of X",
+                    "logo": "https://static.openbankproject.com/images/sandbox/bank_x.png",
+                    "website": "https://www.example.com",
+                    "bank_routing": {
+                        "scheme": "OBP",
+                        "address": "psd201-bank-x--uk"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "user-key": {
+                "type": "apiKey",
+                "name": "user-key",
+                "in": "header"
+            }
         }
     },
     "security": [
         {
-            "apikey": [
+            "user-key": [
             ]
         }
     ],
     "tags": [
         {
-            "name": "PSD2",
-            "description": ""
+            "name": "Insurance",
+            "description": "Insurance sector"
         },
         {
-            "name": "Open Banking",
-            "description": ""
-        },
-        {
-            "name": "Branch",
-            "description": ""
-        },
-        {
-            "name": "ATM",
-            "description": ""
-        },
-        {
-            "name": "Product",
-            "description": ""
+            "name": "OpenBanking",
+            "description": "Financial"
         }
     ]
 }
