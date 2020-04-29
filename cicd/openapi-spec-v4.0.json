@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "open-data-apis",
-        "version": "3.7.0",
+        "version": "3.8.0",
         "description": "Open Banking open data apis",
         "contact": {
             "name": "Red Hat",
@@ -31,6 +31,8 @@
                         "description": "get list of available banks"
                     }
                 },
+                "operationId": "getallbanks",
+                "summary": "Get all banks",
                 "description": "get list of banks"
             },
             "parameters": [
@@ -51,6 +53,7 @@
                         "description": "list of bank details given the bank id"
                     }
                 },
+                "operationId": "getbankid",
                 "description": "get bank details"
             },
             "parameters": [
@@ -77,6 +80,7 @@
                         "description": "get list of atms given bank id"
                     }
                 },
+                "operationId": "getAllAtms",
                 "description": "get bank atms"
             },
             "parameters": [
@@ -96,31 +100,46 @@
                 }
             ]
         },
-        "/banks/{bank_id}/branches/{branch_id}": {
+        "/insurances": {
             "get": {
                 "responses": {
                     "200": {
-                        "description": "returns branch info given branch and bank id"
+                        "description": "Successful response - returns an array of `insurance` entities.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/insurance"
+                            }
+                        }
                     }
                 },
-                "description": "get branch info"
+                "operationId": "getinsurances",
+                "summary": "List All insurances",
+                "description": "Gets a list of all `insurance` entities."
             },
-            "parameters": [
-                {
-                    "name": "bank_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "A new `insurance` to be created.",
+                        "schema": {
+                            "$ref": "#/definitions/insurance"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
                 },
-                {
-                    "name": "branch_id",
-                    "in": "path",
-                    "required": true,
-                    "type": "string"
-                }
-            ]
+                "operationId": "createinsurance",
+                "summary": "Create a insurance",
+                "description": "Creates a new instance of a `insurance`."
+            }
         },
-        "/policies": {
+        "/insurances/{insuranceId}/policies": {
             "get": {
                 "responses": {
                     "200": {
@@ -157,9 +176,18 @@
                 "operationId": "createPolicy",
                 "summary": "Create a Policy",
                 "description": "Creates a new instance of a `Policy`."
-            }
+            },
+            "parameters": [
+                {
+                    "name": "insuranceId",
+                    "description": "Insurance Id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
         },
-        "/policies/{policyId}": {
+        "/insurances/{insuranceId}/policies/{policyId}": {
             "get": {
                 "responses": {
                     "200": {
@@ -217,52 +245,20 @@
             },
             "parameters": [
                 {
-                    "name": "policyId",
+                    "name": "insuranceId",
                     "description": "A unique identifier for a `Policy`.",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "policyId",
+                    "description": "Policy id",
                     "in": "path",
                     "required": true,
                     "type": "string"
                 }
             ]
-        },
-        "/insurances": {
-            "get": {
-                "responses": {
-                    "200": {
-                        "description": "Successful response - returns an array of `insurance` entities.",
-                        "schema": {
-                            "type": "array",
-                            "items": {
-                                "$ref": "#/definitions/insurance"
-                            }
-                        }
-                    }
-                },
-                "operationId": "getinsurances",
-                "summary": "List All insurances",
-                "description": "Gets a list of all `insurance` entities."
-            },
-            "post": {
-                "parameters": [
-                    {
-                        "name": "body",
-                        "description": "A new `insurance` to be created.",
-                        "schema": {
-                            "$ref": "#/definitions/insurance"
-                        },
-                        "in": "body",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Successful response."
-                    }
-                },
-                "operationId": "createinsurance",
-                "summary": "Create a insurance",
-                "description": "Creates a new instance of a `insurance`."
-            }
         },
         "/insurances/{insuranceId}": {
             "get": {
@@ -316,6 +312,14 @@
                     "in": "path",
                     "required": true,
                     "type": "string"
+                },
+                {
+                    "name": "user_key",
+                    "description": "3scale API key ",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "x-data-threescale-name": "user_keys"
                 }
             ]
         }
