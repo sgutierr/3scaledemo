@@ -314,7 +314,7 @@
                     "type": "string"
                 },
                 {
-                    "name": "user_key",
+                    "name": "api-key",
                     "description": "3scale API key ",
                     "in": "header",
                     "required": true,
