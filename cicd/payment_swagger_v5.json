@@ -1,0 +1,412 @@
+{
+    "openapi": "3.0.2",
+    "info": {
+        "title": "sc_insurance",
+        "version": "0.8.0",
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
+    "paths": {
+        "/policies": {
+            "summary": "Path used to manage the list of policies.",
+            "description": "The REST endpoint/path used to list and create zero or more `Policy` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Policy"
+                                    }
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": [
+                                            {
+                                                "id": "some text",
+                                                "name": "some text",
+                                                "paymentPerYear": 3,
+                                                "paymentValue": 29.74,
+                                                "startsOnDay": 32,
+                                                "startsOnMonth": 50,
+                                                "startsOnYear": 27
+                                            },
+                                            {
+                                                "id": "some text",
+                                                "name": "some text",
+                                                "paymentPerYear": 6,
+                                                "paymentValue": 71.82,
+                                                "startsOnDay": 39,
+                                                "startsOnMonth": 3,
+                                                "startsOnYear": 80
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Policy` entities."
+                    }
+                },
+                "operationId": "getpolicies",
+                "summary": "List All policies",
+                "description": "Gets a list of all `Policy` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Policy` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Policy"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createPolicy",
+                "summary": "Create a Policy",
+                "description": "Creates a new instance of a `Policy`."
+            }
+        },
+        "/policies/{policyId}": {
+            "summary": "Path used to manage a single Policy.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Policy`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Policy"
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": {
+                                            "id": "my id",
+                                            "name": "some text",
+                                            "paymentPerYear": 59,
+                                            "paymentValue": 73.36,
+                                            "startsOnDay": 91,
+                                            "startsOnMonth": 15,
+                                            "startsOnYear": 54
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Policy`."
+                    }
+                },
+                "operationId": "getPolicy",
+                "summary": "Get a Policy",
+                "description": "Gets the details of a single instance of a `Policy`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Policy` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Policy"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updatePolicy",
+                "summary": "Update a Policy",
+                "description": "Updates an existing `Policy`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deletePolicy",
+                "summary": "Delete a Policy",
+                "description": "Deletes an existing `Policy`."
+            },
+            "parameters": [
+                {
+                    "examples": {
+                        "example1": {
+                            "value": "1"
+                        }
+                    },
+                    "name": "policyId",
+                    "description": "A unique identifier for a `Policy`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        },
+        "/insureances": {
+            "summary": "Path used to manage the list of insureances.",
+            "description": "The REST endpoint/path used to list and create zero or more `Insureance` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/Insureance"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `Insureance` entities."
+                    }
+                },
+                "operationId": "getinsureances",
+                "summary": "List All insureances",
+                "description": "Gets a list of all `Insureance` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `Insureance` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Insureance"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createInsureance",
+                "summary": "Create a Insureance",
+                "description": "Creates a new instance of a `Insureance`."
+            }
+        },
+        "/insureances/{insureanceId}": {
+            "summary": "Path used to manage a single Insureance.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `Insureance`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/Insureance"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `Insureance`."
+                    }
+                },
+                "operationId": "getInsureance",
+                "summary": "Get a Insureance",
+                "description": "Gets the details of a single instance of a `Insureance`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `Insureance` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/Insureance"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateInsureance",
+                "summary": "Update a Insureance",
+                "description": "Updates an existing `Insureance`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteInsureance",
+                "summary": "Delete a Insureance",
+                "description": "Deletes an existing `Insureance`."
+            },
+            "parameters": [
+                {
+                    "name": "insureanceId",
+                    "description": "A unique identifier for a `Insureance`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
+        }
+    },
+    "components": {
+        "schemas": {
+            "Policy": {
+                "title": "Root Type for Policy",
+                "description": "Policy entity",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "paymentPerYear": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "paymentValue": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "startsOnDay": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "startsOnMonth": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "startsOnYear": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "id": "",
+                    "name": "some text",
+                    "paymentPerYear": 39,
+                    "paymentValue": 90.87,
+                    "startsOnDay": 21,
+                    "startsOnMonth": 24,
+                    "startsOnYear": 55
+                }
+            },
+            "Insureance": {
+                "title": "Root Type for Insureance",
+                "description": "",
+                "type": "object",
+                "properties": {
+                    "customerName": {
+                        "type": "string"
+                    },
+                    "id": {
+                        "type": "string"
+                    },
+                    "policies": {
+                        "type": "array",
+                        "items": {
+                            "type": "object",
+                            "properties": {
+                                "id": {
+                                    "type": "string"
+                                },
+                                "name": {
+                                    "type": "string"
+                                },
+                                "paymentPerYear": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "paymentValue": {
+                                    "format": "double",
+                                    "type": "number"
+                                },
+                                "startsOnDay": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "startsOnMonth": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                },
+                                "startsOnYear": {
+                                    "format": "int32",
+                                    "type": "integer"
+                                }
+                            }
+                        }
+                    },
+                    "yearlyPremium": {
+                        "format": "double",
+                        "type": "number"
+                    }
+                },
+                "example": {
+                    "customerName": "some text",
+                    "id": "",
+                    "policies": [
+                        {
+                            "id": "",
+                            "name": "some text",
+                            "paymentPerYear": 49,
+                            "paymentValue": 29.11,
+                            "startsOnDay": 11,
+                            "startsOnMonth": 94,
+                            "startsOnYear": 82
+                        },
+                        {
+                            "id": "",
+                            "name": "some text",
+                            "paymentPerYear": 48,
+                            "paymentValue": 44,
+                            "startsOnDay": 49,
+                            "startsOnMonth": 81,
+                            "startsOnYear": 77
+                        }
+                    ],
+                    "yearlyPremium": 3.02
+                }
+            }
+        },
+        "securitySchemes": {
+            "user-key": {
+                "type": "apiKey",
+                "name": "api-key",
+                "in": "query"
+            }
+        }
+    },
+    "security": [
+        {
+            "user-key": [
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "Insurance",
+            "description": "Insureanca"
+        }
+    ]
+}
