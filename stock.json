@@ -215,7 +215,7 @@
                 "summary": "getStockByProduct"
             }
         },
-        "/api/orders": {
+        "/api/order": {
             "get": {
                 "responses": {
                     "200": {
@@ -233,6 +233,12 @@
                 "description": "Gets a list of all `Order` entities."
             },
             "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
                 "parameters": [
                     {
                         "name": "body",
@@ -246,7 +252,19 @@
                 ],
                 "responses": {
                     "201": {
-                        "description": "Successful response."
+                        "description": "Successful response.",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseEntity"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "body": {
+
+                                },
+                                "statusCode": "428",
+                                "statusCodeValue": 63
+                            }
+                        }
                     }
                 },
                 "operationId": "createOrder",
@@ -254,7 +272,7 @@
                 "description": "Creates a new instance of a `Order`."
             }
         },
-        "/api/orders/{orderId}": {
+        "/api/order/{orderId}": {
             "get": {
                 "responses": {
                     "200": {
@@ -308,35 +326,6 @@
                     "type": "string"
                 }
             ]
-        },
-        "/api/order": {
-            "post": {
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "201": {
-                        "description": "OrderCreated",
-                        "schema": {
-                            "$ref": "#/definitions/ResponseEntity"
-                        },
-                        "examples": {
-                            "application/json": {
-                                "body": {
-
-                                },
-                                "statusCode": "411",
-                                "statusCodeValue": 74
-                            }
-                        }
-                    }
-                },
-                "operationId": "NewOrderId",
-                "summary": "New Orders"
-            }
         }
     },
     "definitions": {
