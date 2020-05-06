@@ -1,7 +1,347 @@
 {
+    "swagger": "2.0",
+    "info": {
+        "title": "StockTicket API",
+        "version": "1.0",
+        "description": "Stock documentation: The STOCK API provides an interface for managing stocks. This API does not include security concerns associated with a user account. This is about personal data, which can be conceived as manageable by the user.",
+        "termsOfService": "urn:tos",
+        "contact": {
+            "email": "sgutierr@redhat.com"
+        },
+        "license": {
+            "name": "Apache 2.0",
+            "url": "https://www.apache.org/licenses/LICENSE-2.0"
+        }
+    },
     "basePath": "/endpoint",
+    "schemes": [
+        "https"
+    ],
+    "paths": {
+        "/api/health": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "*/*"
+                ],
+                "tags": [
+                    "health-controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_key",
+                        "description": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseEntity"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "healthUsingGET",
+                "summary": "health"
+            }
+        },
+        "/api/stock": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "stock-controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_key",
+                        "description": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/StockValueControllerResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGET_2",
+                "summary": "getStock"
+            }
+        },
+        "/api/stock/{storeid}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "stock-controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_key",
+                        "description": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    },
+                    {
+                        "name": "storeid",
+                        "description": "storeid",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/StockValueControllerResponse"
+                            }
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGET_1",
+                "summary": "getStockByStore"
+            }
+        },
+        "/api/stock/{storeid}/{productid}": {
+            "get": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "stock-controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "user_key",
+                        "description": "user_key",
+                        "in": "query",
+                        "required": false,
+                        "type": "string",
+                        "x-data-threescale-name": "user_keys"
+                    },
+                    {
+                        "name": "storeid",
+                        "description": "storeid",
+                        "in": "path",
+                        "required": true,
+                        "type": "integer",
+                        "format": "int32"
+                    },
+                    {
+                        "name": "productid",
+                        "description": "productid",
+                        "in": "path",
+                        "required": true,
+                        "type": "string"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/StockValueControllerResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGETProduct",
+                "summary": "getStockByProduct"
+            }
+        },
+        "/api/orders": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns an array of `Order` entities.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Order"
+                            }
+                        }
+                    }
+                },
+                "operationId": "getorders",
+                "summary": "List All orders",
+                "description": "Gets a list of all `Order` entities."
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "A new `Order` to be created.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createOrder",
+                "summary": "Create a Order",
+                "description": "Creates a new instance of a `Order`."
+            }
+        },
+        "/api/orders/{orderId}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns a single `Order`.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        }
+                    }
+                },
+                "operationId": "getOrder",
+                "summary": "Get a Order",
+                "description": "Gets the details of a single instance of a `Order`."
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Updated `Order` information.",
+                        "schema": {
+                            "$ref": "#/definitions/Order"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateOrder",
+                "summary": "Update a Order",
+                "description": "Updates an existing `Order`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteOrder",
+                "summary": "Delete a Order",
+                "description": "Deletes an existing `Order`."
+            },
+            "parameters": [
+                {
+                    "name": "orderId",
+                    "description": "A unique identifier for a `Order`.",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/api/order": {
+            "post": {
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "responses": {
+                    "201": {
+                        "description": "OrderCreated",
+                        "schema": {
+                            "$ref": "#/definitions/ResponseEntity"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "body": {
+
+                                },
+                                "statusCode": "411",
+                                "statusCodeValue": 74
+                            }
+                        }
+                    }
+                },
+                "operationId": "NewOrderId",
+                "summary": "New Orders"
+            }
+        }
+    },
     "definitions": {
         "ResponseEntity": {
+            "type": "object",
             "properties": {
                 "body": {
                     "type": "object"
@@ -79,10 +419,10 @@
                     "format": "int32",
                     "type": "integer"
                 }
-            },
-            "type": "object"
+            }
         },
         "StockValueControllerResponse": {
+            "type": "object",
             "properties": {
                 "product_id": {
                     "type": "string"
@@ -95,10 +435,10 @@
                     "format": "int32",
                     "type": "integer"
                 }
-            },
-            "type": "object"
+            }
         },
         "StoreValueControllerResponse": {
+            "type": "object",
             "properties": {
                 "store_id": {
                     "format": "int32",
@@ -107,291 +447,86 @@
                 "store_name": {
                     "type": "string"
                 }
+            }
+        },
+        "Order": {
+            "title": "Root Type for Order",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "store_id": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "order_id": {
+                    "type": "string"
+                },
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "size": {
+                                "type": "string"
+                            },
+                            "units": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "operation_type": {
+                                "type": "string"
+                            }
+                        }
+                    }
+                }
             },
-            "type": "object"
-        }
-    },
-    "host": "servi-os-staging2.api.5.9.49.249.xip.io",
-    "info": {
-        "contact": {},
-        "description": "Stock documentation: The STOCK API provides an interface for managing stocks. This API does not include security concerns associated with a user account. This is about personal data, which can be conceived as manageable by the user.",
-        "license": {
-            "name": "Apache 2.0",
-            "url": "http://www.apache.org/licenses/LICENSE-2.0"
-        },
-        "termsOfService": "urn:tos",
-        "title": "Stock API",
-        "version": "1.0"
-    },
-    "paths": {
-        "/api/health": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "healthUsingGET",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
-                ],              
-                "produces": [
-                    "*/*"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/ResponseEntity"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "summary": "health",
-                "tags": [
-                    "health-controller"
-                ]
-            }
-        },
-        "/api/stock": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "getStockUsingGET_2",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
-                ],  
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/StockValueControllerResponse"
-                            },
-                            "type": "array"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "summary": "getStock",
-                "tags": [
-                    "stock-controller"
-                ]
-            }
-        },
-        "/api/stock/{storeid}": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "getStockUsingGET_1",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"},
+            "example": {
+                "store_id": 1,
+                "order_id": "1",
+                "items": [
                     {
-                        "description": "storeid",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "storeid",
-                        "required": true,
-                        "type": "integer"
-                    }                  
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/StockValueControllerResponse"
-                            },
-                            "type": "array"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
+                        "id": "1",
+                        "name": "name1",
+                        "size": "xl",
+                        "units": 10,
+                        "operation_type": "return"
                     }
-                },
-                "summary": "getStockByStore",
-                "tags": [
-                    "stock-controller"
-                ]
-            }
-        },
-        "/api/stock/{storeid}/{productid}": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "getStockUsingGET",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"},
-                    {
-                        "description": "storeid",
-                        "format": "int32",
-                        "in": "path",
-                        "name": "storeid",
-                        "required": true,
-                        "type": "integer"
-                    },
-                    {
-                        "description": "productid",
-                        "in": "path",
-                        "name": "productid",
-                        "required": true,
-                        "type": "string"
-                    }
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/StockValueControllerResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "summary": "getStockByProduct",
-                "tags": [
-                    "stock-controller"
-                ]
-            }
-        },
-        "/api/supplier": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "getStockUsingGET",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/StockValueControllerResponse"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "summary": "getStockByProduct",
-                "tags": [
-                    "stock-controller"
-                ]
-            }
-        },      
-        "/api/store": {
-            "get": {
-                "consumes": [
-                    "application/json"
-                ],
-                "operationId": "getStoresUsingGET",
-                "parameters": [
-                  {"name":"user_key","in":"query","description":"user_key","required":false,"type":"string","x-data-threescale-name":"user_keys"}
-                ],              
-                "produces": [
-                    "application/json"
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "items": {
-                                "$ref": "#/definitions/StoreValueControllerResponse"
-                            },
-                            "type": "array"
-                        }
-                    },
-                    "401": {
-                        "description": "Unauthorized"
-                    },
-                    "403": {
-                        "description": "Forbidden"
-                    },
-                    "404": {
-                        "description": "Not Found"
-                    }
-                },
-                "summary": "getStores",
-                "tags": [
-                    "stock-controller"
                 ]
             }
         }
     },
-    "schemes": [
-        "https"
-    ],
-    "security": [
-        {
-            "apikey": []
-        }
-    ],
     "securityDefinitions": {
         "apikey": {
+            "type": "apiKey",
             "description": "apikey",
-            "in": "query",
             "name": "user_key",
-            "type": "apiKey"
+            "in": "query"
         }
     },
-    "swagger": "2.0",
+    "security": [
+        {
+            "apikey": [
+            ]
+        }
+    ],
     "tags": [
         {
-            "description": "Stock Controller",
-            "name": "stock-controller"
+            "name": "stock-controller",
+            "description": "Stock Controller"
         },
         {
-            "description": "Health Controller",
-            "name": "health-controller"
+            "name": "health-controller",
+            "description": "Health Controller"
+        },
+        {
+            "name": "ticket-controller",
+            "description": "Ticket controller"
         }
     ]
 }
