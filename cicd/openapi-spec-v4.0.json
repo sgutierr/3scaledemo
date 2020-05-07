@@ -1,11 +1,12 @@
 {
     "swagger": "2.0",
     "info": {
-        "title": "open-data-apis",
-        "version": "3.2.0",
-        "description": "Open Banking open data apis",
+        "title": "PoliciesAPI",
+        "version": "1.1.0",
+        "description": "Insurance Policy API documentation: Modify various information on existing policies, automatically update policy information, finance reporting, or re-issue policy documents.",
         "contact": {
             "name": "Red Hat",
+            "url": "http://access.redhat.com",
             "email": "3scale@redhat.com"
         },
         "license": {
