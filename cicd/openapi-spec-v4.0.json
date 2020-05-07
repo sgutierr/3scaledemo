@@ -2,7 +2,7 @@
     "swagger": "2.0",
     "info": {
         "title": "PoliciesAPI",
-        "version": "1.1.0",
+        "version": "1.2.0",
         "description": "Insurance Policy API documentation: Modify various information on existing policies, automatically update policy information, finance reporting, or re-issue policy documents.",
         "contact": {
             "name": "Red Hat",
