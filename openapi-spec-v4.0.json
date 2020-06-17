@@ -1,0 +1,488 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "title": "PoliciesAPI",
+        "version": "1.7.0",
+        "description": "Insurance Policy API documentation: Modify various information on existing policies, automatically update policy information, finance reporting, or re-issue policy documents.",
+        "contact": {
+            "name": "Red Hat",
+            "url": "http://access.redhat.com",
+            "email": "3scale@redhat.com"
+        },
+        "license": {
+            "name": "GNU GPLv3",
+            "url": "https://www.gnu.org/licenses/gpl.txt"
+        }
+    },
+    "basePath": "/open-data/",
+    "schemes": [
+        "https"
+    ],
+    "consumes": [
+        "application/json"
+    ],
+    "produces": [
+        "application/json"
+    ],
+    "paths": {
+        "/banks": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "get list of available banks"
+                    }
+                },
+                "operationId": "getallbanks",
+                "summary": "Get all banks",
+                "description": "get list of banks"
+            },
+            "parameters": [
+                {
+                    "name": "api-key",
+                    "description": "api-key",
+                    "in": "header",
+                    "required": false,
+                    "type": "string",
+                    "x-data-threescale-name": "user_keys"
+                }
+            ]
+        },
+        "/banks/{bank_id}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "list of bank details given the bank id"
+                    }
+                },
+                "operationId": "getbankid",
+                "description": "get bank details"
+            },
+            "parameters": [
+                {
+                    "name": "bank_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "api-key",
+                    "description": "api-key",
+                    "in": "header",
+                    "required": false,
+                    "type": "string",
+                    "x-data-threescale-name": "user_keys"
+                }
+            ]
+        },
+        "/banks/{bank_id}/atms": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "get list of atms given bank id"
+                    }
+                },
+                "operationId": "getAllAtms",
+                "description": "get bank atms"
+            },
+            "parameters": [
+                {
+                    "name": "bank_id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "api-key",
+                    "description": "api-key",
+                    "in": "header",
+                    "required": false,
+                    "type": "string",
+                    "x-data-threescale-name": "user_keys"
+                }
+            ]
+        },
+        "/insurances": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns an array of `insurance` entities.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/insurance"
+                            }
+                        }
+                    }
+                },
+                "operationId": "getinsurances",
+                "summary": "List All insurances",
+                "description": "Gets a list of all `insurance` entities."
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "A new `insurance` to be created.",
+                        "schema": {
+                            "$ref": "#/definitions/insurance"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createinsurance",
+                "summary": "Create a insurance",
+                "description": "Creates a new instance of a `insurance`."
+            }
+        },
+        "/insurances/{insuranceId}/policies": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns an array of `Policy` entities.",
+                        "schema": {
+                            "type": "array",
+                            "items": {
+                                "$ref": "#/definitions/Policy"
+                            }
+                        }
+                    }
+                },
+                "operationId": "getpolicies",
+                "summary": "List All policies",
+                "description": "Gets a list of all `Policy` entities."
+            },
+            "post": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "A new `Policy` to be created.",
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createPolicy",
+                "summary": "Create a Policy",
+                "description": "Creates a new instance of a `Policy`."
+            },
+            "parameters": [
+                {
+                    "name": "insuranceId",
+                    "description": "Insurance Id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/insurances/{insuranceId}/policies/{policyId}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns a single `Policy`.",
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        },
+                        "examples": {
+                            "application/json": {
+                                "id": "some text",
+                                "name": "some text",
+                                "paymentPerYear": 50,
+                                "paymentValue": 51.19,
+                                "startsOnDay": 16,
+                                "startsOnMonth": 76,
+                                "startsOnYear": 24
+                            }
+                        }
+                    }
+                },
+                "operationId": "getPolicy",
+                "summary": "Get a Policy",
+                "description": "Gets the details of a single instance of a `Policy`."
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Updated `Policy` information.",
+                        "schema": {
+                            "$ref": "#/definitions/Policy"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updatePolicy",
+                "summary": "Update a Policy",
+                "description": "Updates an existing `Policy`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deletePolicy",
+                "summary": "Delete a Policy",
+                "description": "Deletes an existing `Policy`."
+            },
+            "parameters": [
+                {
+                    "name": "insuranceId",
+                    "description": "A unique identifier for a `Policy`.",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "policyId",
+                    "description": "Policy id",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                }
+            ]
+        },
+        "/insurances/{insuranceId}": {
+            "get": {
+                "responses": {
+                    "200": {
+                        "description": "Successful response - returns a single `insurance`.",
+                        "schema": {
+                            "$ref": "#/definitions/insurance"
+                        }
+                    }
+                },
+                "operationId": "getinsurance",
+                "summary": "Get a insurance",
+                "description": "Gets the details of a single instance of a `insurance`."
+            },
+            "put": {
+                "parameters": [
+                    {
+                        "name": "body",
+                        "description": "Updated `insurance` information.",
+                        "schema": {
+                            "$ref": "#/definitions/insurance"
+                        },
+                        "in": "body",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateinsurance",
+                "summary": "Update a insurance",
+                "description": "Updates an existing `insurance`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteinsurance",
+                "summary": "Delete a insurance",
+                "description": "Deletes an existing `insurance`."
+            },
+            "parameters": [
+                {
+                    "name": "insuranceId",
+                    "description": "A unique identifier for a `insurance`.",
+                    "in": "path",
+                    "required": true,
+                    "type": "string"
+                },
+                {
+                    "name": "api-key",
+                    "description": "3scale API key ",
+                    "in": "header",
+                    "required": true,
+                    "type": "string",
+                    "x-data-threescale-name": "user_keys"
+                }
+            ]
+        }
+    },
+    "definitions": {
+        "bank": {
+            "description": "",
+            "type": "object"
+        },
+        "Policy": {
+            "title": "Root Type for Policy",
+            "description": "Policy entity",
+            "type": "object",
+            "properties": {
+                "id": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "paymentPerYear": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "paymentValue": {
+                    "format": "double",
+                    "type": "number"
+                },
+                "startsOnDay": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "startsOnMonth": {
+                    "format": "int32",
+                    "type": "integer"
+                },
+                "startsOnYear": {
+                    "format": "int32",
+                    "type": "integer"
+                }
+            },
+            "example": {
+                "id": "",
+                "name": "some text",
+                "paymentPerYear": 39,
+                "paymentValue": 90.87,
+                "startsOnDay": 21,
+                "startsOnMonth": 24,
+                "startsOnYear": 55
+            }
+        },
+        "insurance": {
+            "title": "Root Type for insurance",
+            "description": "",
+            "type": "object",
+            "properties": {
+                "customerName": {
+                    "type": "string"
+                },
+                "id": {
+                    "type": "string"
+                },
+                "policies": {
+                    "type": "array",
+                    "items": {
+                        "type": "object",
+                        "properties": {
+                            "id": {
+                                "type": "string"
+                            },
+                            "name": {
+                                "type": "string"
+                            },
+                            "paymentPerYear": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "paymentValue": {
+                                "format": "double",
+                                "type": "number"
+                            },
+                            "startsOnDay": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "startsOnMonth": {
+                                "format": "int32",
+                                "type": "integer"
+                            },
+                            "startsOnYear": {
+                                "format": "int32",
+                                "type": "integer"
+                            }
+                        }
+                    }
+                },
+                "yearlyPremium": {
+                    "format": "double",
+                    "type": "number"
+                }
+            },
+            "example": {
+                "customerName": "some text",
+                "id": "",
+                "policies": [
+                    {
+                        "id": "",
+                        "name": "some text",
+                        "paymentPerYear": 49,
+                        "paymentValue": 29.11,
+                        "startsOnDay": 11,
+                        "startsOnMonth": 94,
+                        "startsOnYear": 82
+                    },
+                    {
+                        "id": "",
+                        "name": "some text",
+                        "paymentPerYear": 48,
+                        "paymentValue": 44,
+                        "startsOnDay": 49,
+                        "startsOnMonth": 81,
+                        "startsOnYear": 77
+                    }
+                ],
+                "yearlyPremium": 3.02
+            }
+        }
+    },
+    "securityDefinitions": {
+        "apikey": {
+            "type": "apiKey",
+            "description": "Use a 3scale API Key",
+            "name": "api-key",
+            "in": "header"
+        }
+    },
+    "security": [
+        {
+            "apikey": [
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "PSD2",
+            "description": ""
+        },
+        {
+            "name": "Open Banking",
+            "description": ""
+        },
+        {
+            "name": "Branch",
+            "description": ""
+        },
+        {
+            "name": "ATM",
+            "description": ""
+        },
+        {
+            "name": "Product",
+            "description": ""
+        }
+    ]
+}
