@@ -176,27 +176,6 @@
                 "operationId": "getStockUsingGET_1",
                 "summary": "getStock"
             },
-            "post": {
-                "requestBody": {
-                    "description": "{\n    \"text\" : \"text1\"\n}",
-                    "required": true
-                },
-                "parameters": [
-                    {
-                        "name": "storeid",
-                        "schema": {
-                            "type": "integer"
-                        },
-                        "in": "path",
-                        "required": true
-                    }
-                ],
-                "responses": {
-                    "201": {
-                        "description": "Store created"
-                    }
-                }
-            },
             "delete": {
                 "parameters": [
                     {
