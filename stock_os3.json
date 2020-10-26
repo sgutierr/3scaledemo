@@ -1,0 +1,440 @@
+{
+    "openapi": "3.0.0",
+    "info": {
+        "title": "Stock API OAS 3",
+        "version": "1.0",
+        "description": "Api Documentation",
+        "contact": {
+            "name": "Red Hat",
+            "url": "http://redhat.com",
+            "email": "sgutierr@redhat.com"
+        },
+        "license": {
+            "name": "GNU LGPLv3",
+            "url": "https://www.gnu.org/licenses/lgpl.txt"
+        }
+    },
+    "paths": {
+        "/api/health": {
+            "get": {
+                "tags": [
+                    "health-controller"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "*/*": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/ResponseEntity"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "healthUsingGET",
+                "summary": "health"
+            }
+        },
+        "/api/stock": {
+            "get": {
+                "tags": [
+                    "stock-controller"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StockValueControllerResponse"
+                                    }
+                                },
+                                "examples": {
+                                    "response": {
+                                        "value": [
+                                            {
+                                                "product_id": "some text",
+                                                "store_id": 68,
+                                                "units": 73
+                                            },
+                                            {
+                                                "product_id": "some text",
+                                                "store_id": 90,
+                                                "units": 47
+                                            }
+                                        ]
+                                    },
+                                    "example2": {
+                                        "value": [
+                                            {
+                                                "product_id": "some text",
+                                                "store_id": 81,
+                                                "units": 50
+                                            },
+                                            {
+                                                "product_id": "some text",
+                                                "store_id": 90,
+                                                "units": 49
+                                            }
+                                        ]
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGET_2",
+                "summary": "getStock"
+            },
+            "post": {
+                "responses": {
+                    "200": {
+                        "description": "Item added in the inventory"
+                    }
+                }
+            },
+            "delete": {
+                "responses": {
+                    "200": {
+                        "description": "Stock delete"
+                    }
+                }
+            }
+        },
+        "/api/stock/{storeid}": {
+            "get": {
+                "tags": [
+                    "stock-controller"
+                ],
+                "parameters": [
+                    {
+                        "examples": {
+                            "example1": {
+                                "value": "1"
+                            }
+                        },
+                        "name": "storeid",
+                        "description": "storeid",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockValueControllerResponse"
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": {
+                                            "product_id": "some text for everis ",
+                                            "store_id": 1,
+                                            "units": 53
+                                        }
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGET_1",
+                "summary": "getStock"
+            },
+            "post": {
+                "requestBody": {
+                    "description": "{\n    \"text\" : \"text1\"\n}",
+                    "required": true
+                },
+                "parameters": [
+                    {
+                        "name": "storeid",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Store created"
+                    }
+                }
+            },
+            "delete": {
+                "parameters": [
+                    {
+                        "name": "storeid",
+                        "description": "Store ID",
+                        "schema": {
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "Store deleted"
+                    }
+                }
+            }
+        },
+        "/api/stock/{storeid}/{productid}": {
+            "get": {
+                "tags": [
+                    "stock-controller"
+                ],
+                "parameters": [
+                    {
+                        "name": "storeid",
+                        "description": "storeid",
+                        "schema": {
+                            "format": "int32",
+                            "type": "integer"
+                        },
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "name": "productid",
+                        "description": "productid",
+                        "schema": {
+                            "type": "string"
+                        },
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/StockValueControllerResponse"
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStockUsingGET",
+                "summary": "getStock"
+            }
+        },
+        "/api/store": {
+            "get": {
+                "tags": [
+                    "stock-controller"
+                ],
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/StoreValueControllerResponse"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "OK"
+                    },
+                    "401": {
+                        "description": "Unauthorized"
+                    },
+                    "403": {
+                        "description": "Forbidden"
+                    },
+                    "404": {
+                        "description": "Not Found"
+                    }
+                },
+                "operationId": "getStoresUsingGET",
+                "summary": "getStores"
+            }
+        }
+    },
+    "components": {
+        "schemas": {
+            "ResponseEntity": {
+                "type": "object",
+                "properties": {
+                    "body": {
+                        "type": "object"
+                    },
+                    "statusCode": {
+                        "enum": [
+                            "100",
+                            "101",
+                            "102",
+                            "103",
+                            "200",
+                            "201",
+                            "202",
+                            "203",
+                            "204",
+                            "205",
+                            "206",
+                            "207",
+                            "208",
+                            "226",
+                            "300",
+                            "301",
+                            "302",
+                            "303",
+                            "304",
+                            "305",
+                            "307",
+                            "308",
+                            "400",
+                            "401",
+                            "402",
+                            "403",
+                            "404",
+                            "405",
+                            "406",
+                            "407",
+                            "408",
+                            "409",
+                            "410",
+                            "411",
+                            "412",
+                            "413",
+                            "414",
+                            "415",
+                            "416",
+                            "417",
+                            "418",
+                            "419",
+                            "420",
+                            "421",
+                            "422",
+                            "423",
+                            "424",
+                            "426",
+                            "428",
+                            "429",
+                            "431",
+                            "451",
+                            "500",
+                            "501",
+                            "502",
+                            "503",
+                            "504",
+                            "505",
+                            "506",
+                            "507",
+                            "508",
+                            "509",
+                            "510",
+                            "511"
+                        ],
+                        "type": "string"
+                    },
+                    "statusCodeValue": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                }
+            },
+            "StockValueControllerResponse": {
+                "type": "object",
+                "properties": {
+                    "product_id": {
+                        "type": "string"
+                    },
+                    "store_id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "units": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                }
+            },
+            "StoreValueControllerResponse": {
+                "type": "object",
+                "properties": {
+                    "store_id": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "store_name": {
+                        "type": "string"
+                    }
+                }
+            }
+        },
+        "securitySchemes": {
+            "apikey": {
+                "type": "apiKey",
+                "name": "user_key",
+                "in": "header"
+            }
+        }
+    },
+    "security": [
+        {
+            "apikey": [
+            ]
+        }
+    ],
+    "tags": [
+        {
+            "name": "stock-controller",
+            "description": "Stock Controller"
+        },
+        {
+            "name": "health-controller",
+            "description": "Health Controller"
+        }
+    ]
+}
