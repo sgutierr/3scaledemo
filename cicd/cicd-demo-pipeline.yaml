@@ -91,28 +91,31 @@ parameters:
   value: master
   required: true
 - name: DEV_PRIVATE_BASE_URL
+  value: https://echo-api.3scale.net:443
   required: true
 - name: TEST_PRIVATE_BASE_URL
+  value: https://echo-api.3scale.net:443
   required: true
 - name: PROD_PRIVATE_BASE_URL
+  value: https://echo-api.3scale.net:443
   required: true
 - name: DEV_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://oapi-p-v3-prod.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-dev-production.apps.my-cluster.ocp4.openshift.es'
   required: true
 - name: DEV_STAGING_PUBLIC_BASE_URL
-  value: 'https://oapi-s-v3-prod.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-dev-staging.apps.my-cluster.ocp4.openshift.es'
   required: true
 - name: TEST_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://oapi-p-v3-test.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-test-production.apps.my-cluster.ocp4.openshift.es'
   required: true
 - name: TEST_STAGING_PUBLIC_BASE_URL
-  value: 'https://oapi-s-v3-test.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-test-staging.apps.my-cluster.ocp4.openshift.es'
   required: true  
 - name: PROD_PRODUCTION_PUBLIC_BASE_URL
-  value: 'https://oapi-p-v3-prod.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-prod-production.apps.my-cluster.ocp4.openshift.es'
   required: true
 - name: PROD_STAGING_PUBLIC_BASE_URL
-  value: 'https://oapi-s-v3-prod.api.5.9.49.249.xip.io'
+  value: 'https://payment-ser-prod-staging.apps.my-cluster.ocp4.openshift.es'
   required: true
 - name: API_BASE_SYSTEM_NAME
   value: payment_api
@@ -128,12 +131,12 @@ parameters:
   value: PROD
 - name: IMAGE_NAMESPACE
   required: true
-  value: openbanking-cicd
+  value: appdev-devops
 - name: SECRET_NAME
   value: 3scale-toolbox
   required: true  
 - name: TARGET_INSTANCE_DEV
-  value: hetzner
+  value: ocp4
   required: true  
 - name: TARGET_INSTANCE_TEST
   value: test
@@ -143,13 +146,13 @@ parameters:
   required: true
 - name: DEV_DEVELOPER_ACCOUNT_ID
   required: true
-  value: "3"
+  value: "54"
 - name: TEST_DEVELOPER_ACCOUNT_ID
   required: true
   value: "2445581796198"  
 - name: PROD_DEVELOPER_ACCOUNT_ID
   required: true
-  value: "3"
+  value: "54"
 - name: DISABLE_TLS_VALIDATION
   value: "yes"
 - name: APPLICATION_NAME

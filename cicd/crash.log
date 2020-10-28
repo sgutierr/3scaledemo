@@ -1,0 +1,167 @@
+Crashlog created at 2020-10-28 15:38:54 +0100
+
+===== MESSAGE:
+
+[1m[31mOpenSSL::SSL::SSLError: SSL_connect returned=1 errno=0 state=error: certificate verify failed (self signed certificate in certificate chain)[0m
+
+===== BACKTRACE:
+
+/usr/share/ruby/net/protocol.rb:44:in `connect_nonblock'
+/usr/share/ruby/net/protocol.rb:44:in `ssl_socket_connect'
+/usr/share/ruby/net/http.rb:1009:in `connect'
+/usr/share/ruby/net/http.rb:943:in `do_start'
+/usr/share/ruby/net/http.rb:932:in `start'
+/usr/share/ruby/net/http.rb:1483:in `request'
+/usr/share/ruby/net/http.rb:1241:in `get'
+/home/sgutierr/.gem/ruby/gems/3scale-api-1.1.0/lib/3scale/api/http_client.rb:36:in `get'
+/home/sgutierr/.gem/ruby/gems/3scale-api-1.1.0/lib/3scale/api/client.rb:16:in `show_service'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/entities/service.rb:281:in `fetch_attrs'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/entities/service.rb:75:in `attrs'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/entities/service.rb:26:in `tap'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/entities/service.rb:26:in `find'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/commands/plans_command/list_command.rb:36:in `find_service'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/commands/plans_command/list_command.rb:32:in `service'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/commands/plans_command/list_command.rb:26:in `run'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command_runner.rb:34:in `call'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command_dsl.rb:303:in `block in runner'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command.rb:359:in `run_this'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command.rb:296:in `run'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command.rb:314:in `run'
+/home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib/cri/command.rb:314:in `run'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/cli.rb:47:in `block in run'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/cli/error_handler.rb:5:in `block in error_watchdog'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/cli/error_handler.rb:11:in `error_watchdog'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/cli/error_handler.rb:5:in `error_watchdog'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib/3scale_toolbox/cli.rb:44:in `run'
+/home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/exe/3scale:15:in `<top (required)>'
+/home/sgutierr/bin/3scale:23:in `load'
+/home/sgutierr/bin/3scale:23:in `<main>'
+
+===== VERSION INFORMATION:
+
+0.16.0
+
+===== SYSTEM INFORMATION:
+
+{"sysname":"Linux","nodename":"localhost.localdomain","release":"5.8.8-200.fc32.x86_64","version":"#1 SMP Wed Sep 9 19:31:09 UTC 2020","machine":"x86_64"}
+
+===== INSTALLED GEMS:
+
+  3scale-api 0.1.7, 0.6.0, 1.1.0
+  3scale-cms 0.1.0, 0.1.1, 0.2.0
+  3scale_toolbox 0.12.3, 0.16.0
+  activesupport 6.0.3
+  addressable 2.6.0
+  benchmark 0.1.0
+  bigdecimal 2.0.0
+  builder 3.2.4
+  bundler 2.1.4
+  cgi 0.1.0
+  colored 1.2
+  concurrent-ruby 1.1.6
+  cri 2.15.2
+  csv 3.1.2
+  date 3.0.0
+  dbm 1.1.0
+  deep_merge 1.2.1
+  delegate 0.1.0
+  did_you_mean 1.4.0
+  domain_name 0.5.20180417
+  etc 1.1.0
+  fcntl 1.0.0
+  fiddle 1.0.0
+  fileutils 1.4.1
+  forwardable 1.3.1
+  gdbm 2.1.0
+  getoptlong 0.1.0
+  hansi 0.2.0
+  hash-deep-merge 0.1.1
+  http-accept 1.7.0
+  http-cookie 1.0.3
+  i18n 1.8.2
+  io-console 0.5.6
+  ipaddr 1.2.2
+  irb 1.2.3
+  json 2.3.0
+  json-schema 2.8.1
+  liquid 3.0.6
+  logger 1.4.2
+  matrix 0.2.0
+  mime-types 2.99.3
+  mini_portile2 2.4.0
+  minitest 5.14.0
+  mustermann 1.1.1
+  mustermann-contrib 1.1.1
+  mutex_m 0.1.0
+  net-pop 0.1.0
+  net-smtp 0.1.0
+  netrc 0.11.0
+  nokogiri 1.10.1
+  oas_parser 0.25.1
+  observer 0.1.0
+  open3 0.1.0
+  openssl 2.1.2
+  ostruct 0.2.0
+  prime 0.1.1
+  pstore 0.1.0
+  psych 3.1.0
+  public_suffix 3.1.1
+  racc 1.4.16
+  rdoc 6.2.1
+  readline 0.0.2
+  readline-ext 0.1.0
+  reline 0.1.3
+  rest-client 1.8.0, 2.1.0
+  rexml 3.2.3
+  rss 0.2.8
+  ruby2_keywords 0.0.2
+  sdbm 1.0.0
+  singleton 0.1.0
+  stringio 0.1.0
+  strscan 1.0.3
+  thread_safe 0.3.6
+  timeout 0.1.0
+  tracer 0.1.0
+  tzinfo 1.2.7
+  unf 0.1.4
+  unf_ext 0.0.7.5
+  uri 0.10.0
+  webrick 1.6.0
+  yaml 0.1.0
+  zeitwerk 2.3.0
+  zlib 1.1.0
+
+===== LOAD PATHS:
+
+  0. /home/sgutierr/.gem/ruby/gems/3scale-api-1.1.0/lib
+  1. /home/sgutierr/.gem/ruby/gems/colored-1.2/lib
+  2. /home/sgutierr/.gem/ruby/gems/cri-2.15.2/lib
+  3. /home/sgutierr/.gem/ruby/gems/public_suffix-3.1.1/lib
+  4. /home/sgutierr/.gem/ruby/gems/addressable-2.6.0/lib
+  5. /home/sgutierr/.gem/ruby/gems/json-schema-2.8.1/lib
+  6. /home/sgutierr/.gem/ruby/gems/deep_merge-1.2.1/lib
+  7. /home/sgutierr/.gem/ruby/gems/concurrent-ruby-1.1.6/lib/concurrent-ruby
+  8. /home/sgutierr/.gem/ruby/gems/i18n-1.8.2/lib
+  9. /home/sgutierr/.gem/ruby/gems/thread_safe-0.3.6/lib
+  10. /home/sgutierr/.gem/ruby/gems/tzinfo-1.2.7/lib
+  11. /home/sgutierr/.gem/ruby/gems/minitest-5.14.0/lib
+  12. /home/sgutierr/.gem/ruby/gems/zeitwerk-2.3.0/lib
+  13. /home/sgutierr/.gem/ruby/gems/activesupport-6.0.3/lib
+  14. /home/sgutierr/.gem/ruby/gems/builder-3.2.4/lib
+  15. /home/sgutierr/.gem/ruby/gems/ruby2_keywords-0.0.2/lib
+  16. /home/sgutierr/.gem/ruby/gems/mustermann-1.1.1/lib
+  17. /home/sgutierr/.gem/ruby/gems/hansi-0.2.0/lib
+  18. /home/sgutierr/.gem/ruby/gems/mustermann-contrib-1.1.1/lib
+  19. /home/sgutierr/.gem/ruby/gems/mini_portile2-2.4.0/lib
+  20. /home/sgutierr/.gem/ruby/gems/nokogiri-1.10.1/lib
+  21. /home/sgutierr/.gem/ruby/extensions/x86_64-linux/2.7.0/nokogiri-1.10.1
+  22. /home/sgutierr/.gem/ruby/gems/hash-deep-merge-0.1.1/lib
+  23. /home/sgutierr/.gem/ruby/gems/oas_parser-0.25.1/lib
+  24. /home/sgutierr/.gem/ruby/gems/3scale_toolbox-0.16.0/lib
+  25. /usr/local/share/ruby/site_ruby
+  26. /usr/local/lib64/ruby/site_ruby
+  27. /usr/share/ruby/vendor_ruby
+  28. /usr/lib64/ruby/vendor_ruby
+  29. /usr/share/rubygems
+  30. /usr/share/ruby
+  31. /usr/lib64/ruby
