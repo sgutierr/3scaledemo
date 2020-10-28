@@ -167,4 +167,4 @@ parameters:
   value: "quay.io/redhat/3scale-toolbox:latest"
 - name: ENDPOINT2TEST
   required: true
-  value: "banks"  
+  value: "/api/health"  
