@@ -72,7 +72,8 @@ node() {
             [ name: "my-test-app", description: "This is used for tests", plan: "test", account: params.DEV_DEVELOPER_ACCOUNT_ID ]
         ],
         applicationPlans: [
-          [ systemName: "test", name: "Test", defaultPlan: true, published: true ]
+          [ systemName: "test", name: "Test", defaultPlan: false, published: true ]
+          [ systemName: "sandbox", name: "Sandbox", defaultPlan: false, published: true, artefactFile: "https://raw.githubusercontent.com/sgutierr/3scaledemo/master/cicd/sandbox-app-plan.yaml" ]
         ]
     )
 
