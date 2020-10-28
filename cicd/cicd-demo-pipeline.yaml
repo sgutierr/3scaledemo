@@ -83,6 +83,8 @@ objects:
           value: ${OPENAPI_SPECIFICATION_FILE}
         - name: TOOLBOX_IMAGE_REGISTRY
           value: ${TOOLBOX_IMAGE_REGISTRY}
+        - name: ENDPOINT2TEST
+          value: ${ENDPOINT2TEST}          
 parameters:
 - name: GIT_REPO
   value: https://github.com/sgutierr/3scaledemo.git
@@ -163,3 +165,6 @@ parameters:
 - name: TOOLBOX_IMAGE_REGISTRY
   required: true
   value: "quay.io/redhat/3scale-toolbox:latest"
+- name: ENDPOINT2TEST
+  required: true
+  value: "banks"  
