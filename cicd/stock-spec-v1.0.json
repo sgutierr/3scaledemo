@@ -153,9 +153,16 @@
                                 "examples": {
                                     "example1": {
                                         "value": {
-                                            "product_id": "some text for everis ",
+                                            "product_id": "some text for AVAYA ",
                                             "store_id": 1,
                                             "units": 53
+                                        }
+                                    },
+                                    "example2": {
+                                        "value": {
+                                            "product_id": "some text",
+                                            "store_id": 20,
+                                            "units": 88
                                         }
                                     }
                                 }
@@ -227,6 +234,15 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/StockValueControllerResponse"
+                                },
+                                "examples": {
+                                    "example1": {
+                                        "value": {
+                                            "product_id": "some AVAYA",
+                                            "store_id": 34,
+                                            "units": 81
+                                        }
+                                    }
                                 }
                             }
                         },
