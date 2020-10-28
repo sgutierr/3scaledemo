@@ -7,7 +7,7 @@ plan:
   trial_period_days: 0
   cancellation_period: 0
   approval_required: false
-  system_name: basic
+  system_name: sandbox
 limits: []
 pricingrules: []
 plan_features:
