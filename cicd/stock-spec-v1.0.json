@@ -411,7 +411,8 @@
         "securitySchemes": {
             "apikey": {
                 "type": "apiKey",
-                "name": "user_key",
+                "description": "3scale API-Key",
+                "name": "api-key",
                 "in": "header"
             }
         }
