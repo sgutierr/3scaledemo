@@ -8,7 +8,7 @@
 // TO-DO:  Explain why doesn't this groovy functionality just come out of the box with the the 3scale toolbox container image ?
 library identifier: '3scale-toolbox-jenkins@master', 
         retriever: modernSCM([$class: 'GitSCMSource',
-                              remote: 'https://github.com/rh-integration/3scale-toolbox-jenkins.git',
+                              remote: 'https://github.com/sgutierr/3scale-toolbox-jenkins.git',
                               traits: [[$class: 'jenkins.plugins.git.traits.BranchDiscoveryTrait']]])
 
 def service = null
