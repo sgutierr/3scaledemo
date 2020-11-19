@@ -2,16 +2,16 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Stock_OAS3",
-        "version": "3.1",
-        "description": "Stock documentation: OS3 The STOCK API provides an interface for managing stocks. This API does not include security concerns associated with a user account. This is about personal data, which can be conceived as manageable by the user.Add info for Sergio DEMO\n",
+        "version": "3.2",
+        "description": "Stock documentation: OS3 The STOCK API provides an interface for managing stocks. This API does not include security concerns associated with a user account. This is about personal data, which can be conceived as manageable by the user.Add info for Sergio DEMO telenet\n",
         "contact": {
             "name": "Red Hat",
             "url": "http://redhat.com",
             "email": "sgutierr@redhat.com"
         },
         "license": {
-            "name": "GNU GPLv3",
-            "url": "https://www.gnu.org/licenses/gpl.txt"
+            "name": "Mozilla 2.0",
+            "url": "https://www.mozilla.org/en-US/MPL/2.0/"
         }
     },
     "paths": {
@@ -153,9 +153,9 @@
                                 "examples": {
                                     "example1": {
                                         "value": {
-                                            "product_id": "test for Avaya",
-                                            "store_id": 1,
-                                            "units": 10
+                                            "product_id": "some text Telenet",
+                                            "store_id": 87,
+                                            "units": 80
                                         }
                                     }
                                 }
@@ -287,6 +287,114 @@
                 "operationId": "getStoresUsingGET",
                 "summary": "getStores"
             }
+        },
+        "/invoices": {
+            "summary": "Path used to manage the list of invoices.",
+            "description": "The REST endpoint/path used to list and create zero or more `invoice` entities.  This path contains a `GET` and `POST` operation to perform the list and create tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "type": "array",
+                                    "items": {
+                                        "$ref": "#/components/schemas/invoice"
+                                    }
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns an array of `invoice` entities."
+                    }
+                },
+                "operationId": "getinvoices",
+                "summary": "List All invoices",
+                "description": "Gets a list of all `invoice` entities."
+            },
+            "post": {
+                "requestBody": {
+                    "description": "A new `invoice` to be created.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/invoice"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "201": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "createinvoice",
+                "summary": "Create a invoice",
+                "description": "Creates a new instance of a `invoice`."
+            }
+        },
+        "/invoices/{invoiceId}": {
+            "summary": "Path used to manage a single invoice.",
+            "description": "The REST endpoint/path used to get, update, and delete single instances of an `invoice`.  This path contains `GET`, `PUT`, and `DELETE` operations used to perform the get, update, and delete tasks, respectively.",
+            "get": {
+                "responses": {
+                    "200": {
+                        "content": {
+                            "application/json": {
+                                "schema": {
+                                    "$ref": "#/components/schemas/invoice"
+                                }
+                            }
+                        },
+                        "description": "Successful response - returns a single `invoice`."
+                    }
+                },
+                "operationId": "getinvoice",
+                "summary": "Get a invoice",
+                "description": "Gets the details of a single instance of a `invoice`."
+            },
+            "put": {
+                "requestBody": {
+                    "description": "Updated `invoice` information.",
+                    "content": {
+                        "application/json": {
+                            "schema": {
+                                "$ref": "#/components/schemas/invoice"
+                            }
+                        }
+                    },
+                    "required": true
+                },
+                "responses": {
+                    "202": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "updateinvoice",
+                "summary": "Update a invoice",
+                "description": "Updates an existing `invoice`."
+            },
+            "delete": {
+                "responses": {
+                    "204": {
+                        "description": "Successful response."
+                    }
+                },
+                "operationId": "deleteinvoice",
+                "summary": "Delete a invoice",
+                "description": "Deletes an existing `invoice`."
+            },
+            "parameters": [
+                {
+                    "name": "invoiceId",
+                    "description": "A unique identifier for a `invoice`.",
+                    "schema": {
+                        "type": "string"
+                    },
+                    "in": "path",
+                    "required": true
+                }
+            ]
         }
     },
     "components": {
@@ -398,6 +506,48 @@
                     "store_name": {
                         "type": "string"
                     }
+                }
+            },
+            "invoice": {
+                "title": "Root Type for invoice",
+                "description": "inoive",
+                "type": "object",
+                "properties": {
+                    "id": {
+                        "type": "string"
+                    },
+                    "name": {
+                        "type": "string"
+                    },
+                    "paymentPerYear": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "paymentValue": {
+                        "format": "double",
+                        "type": "number"
+                    },
+                    "startsOnDay": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "startsOnMonth": {
+                        "format": "int32",
+                        "type": "integer"
+                    },
+                    "startsOnYear": {
+                        "format": "int32",
+                        "type": "integer"
+                    }
+                },
+                "example": {
+                    "id": "",
+                    "name": "some text",
+                    "paymentPerYear": 39,
+                    "paymentValue": 90.87,
+                    "startsOnDay": 21,
+                    "startsOnMonth": 24,
+                    "startsOnYear": 55
                 }
             }
         },
