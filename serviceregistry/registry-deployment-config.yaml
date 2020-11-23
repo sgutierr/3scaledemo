@@ -1,0 +1,71 @@
+apiVersion: apps.openshift.io/v1
+kind: DeploymentConfig
+metadata:
+  labels:
+    app: apicurio-registry
+  name: apicurio-registry
+spec:
+  replicas: 1
+  selector:
+    app: apicurio-registry
+    deploymentconfig: apicurio-registry
+  strategy:
+    activeDeadlineSeconds: 21600
+    resources: {}
+    rollingParams:
+      intervalSeconds: 1
+      maxSurge: 25%
+      maxUnavailable: 25%
+      timeoutSeconds: 600
+      updatePeriodSeconds: 1
+    type: Rolling
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: apicurio-registry
+        deploymentconfig: apicurio-registry
+    spec:
+      containers:
+        - env:
+            - name: quarkus.datasource.jdbc.url
+              value: >-
+                jdbc:postgresql://postgresql.apicurio.svc.cluster.local:5432/apicurioregistry
+            - name: quarkus.datasource.username
+              value: XXXXXXX
+            - name: quarkus.datasource.password
+              value: YYYYYYY
+            - name: quarkus.datasource.db-kind
+              value: postgresql
+          image: >-
+            docker.io/apicurio/apicurio-registry-sql@sha256:5509a2cf80bfa2d90493c531ec996633294a3ba03113c402a2de7c1b467ffc3a
+          imagePullPolicy: Always
+          name: apicurio-registry
+          ports:
+            - containerPort: 8080
+              protocol: TCP
+            - containerPort: 8778
+              protocol: TCP
+            - containerPort: 9779
+              protocol: TCP
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      schedulerName: default-scheduler
+      securityContext: {}
+      terminationGracePeriodSeconds: 30
+  test: false
+  triggers:
+    - type: ConfigChange
+    - imageChangeParams:
+        automatic: true
+        containerNames:
+          - apicurio-registry
+        from:
+          kind: ImageStreamTag
+          name: 'apicurio-registry:latest-snapshot'
+          namespace: openshift
+      type: ImageChange
+
