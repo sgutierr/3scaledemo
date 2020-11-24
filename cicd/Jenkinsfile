@@ -83,6 +83,8 @@ node() {
     // Add Tags in the description field
     //service.applyDescriptioWithTags()
 	  
+    service.applyDescriptioWithTags()
+	  
     // Create an Application Plan
     service.applyApplicationPlans()
 
