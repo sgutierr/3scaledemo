@@ -80,6 +80,9 @@ node() {
     service.importOpenAPI()
     echo "Service with system_name ${service.environment.targetSystemName} created !"
 
+    // Add Tags in the description field
+    service.applyDescriptioWithTags()
+	  
     // Create an Application Plan
     service.applyApplicationPlans()
 
