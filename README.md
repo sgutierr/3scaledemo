@@ -8,7 +8,7 @@ We want to automate deployment of an API managed by 3scale across multiple envir
 
 ### Prerequisites
 
-This demo is composed of the components as follows: 
+This demo is composed of the following components: 
 
 **Products and Projects**
 
