@@ -138,7 +138,7 @@ parameters:
   value: 3scale-toolbox
   required: true  
 - name: TARGET_INSTANCE_DEV
-  value: ocp4
+  value: ocp4demo
   required: true  
 - name: TARGET_INSTANCE_TEST
   value: test
