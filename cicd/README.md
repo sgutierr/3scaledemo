@@ -14,4 +14,13 @@ Create a new app, notice these hints:
 
 ```sh
 oc new-app -f cicd-demo-pipeline.yaml -p API_BASE_SYSTEM_NAME=stockAPI3 -p DEV_STAGING_PUBLIC_BASE_URL=https://stock-dev-staging.apps.my-cluster.ocp4.openshift.es -p DEV_PRODUCTION_PUBLIC_BASE_URL=https://stock-dev-production.apps.my-cluster.ocp4.openshift.es -p TEST_STAGING_PUBLIC_BASE_URL=https://stock-test-staging.apps.my-cluster.ocp4.openshift.es -p TEST_PRODUCTION_PUBLIC_BASE_URL=https://stock-test-production.apps.my-cluster.ocp4.openshift.es -p OPENAPI_SPECIFICATION_FILE=stock-spec-v1.0.json -p TARGET_INSTANCE_DEV=devenv -p TARGET_INSTANCE_TEST=testenv -p DEV_DEVELOPER_ACCOUNT_ID=8
+
+oc start-build cicd-demo-api-pipeline
 ```
+
+## For deleting the pipeline
+
+```sh
+oc delete buildconfig cicd-demo-api-pipeline
+```
+
