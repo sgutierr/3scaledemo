@@ -2,7 +2,7 @@
     "openapi": "3.0.0",
     "info": {
         "title": "Stock",
-        "version": "4.0.0",
+        "version": "4.0",
         "description": " The STOCK API provides an interface for managing stocks. This API does not include security concerns associated with a user account. This is about personal data, which can be conceived as manageable by the user.\n",
         "contact": {
             "name": "Red Hat",
@@ -153,7 +153,7 @@
                                 "examples": {
                                     "example1": {
                                         "value": {
-                                            "product_id": "some text demo - CTTI ",
+                                            "product_id": "some text demo ",
                                             "store_id": 87,
                                             "units": 80
                                         }
@@ -343,10 +343,26 @@
                             "application/json": {
                                 "schema": {
                                     "$ref": "#/components/schemas/invoice"
+                                },
+                                "examples": {
+                                    "invoiceexample": {
+                                        "value": {
+                                            "id": "some text",
+                                            "name": "some text",
+                                            "paymentPerYear": 55,
+                                            "paymentValue": 8.45,
+                                            "startsOnDay": 95,
+                                            "startsOnMonth": 83,
+                                            "startsOnYear": 44
+                                        }
+                                    }
                                 }
                             }
                         },
                         "description": "Successful response - returns a single `invoice`."
+                    },
+                    "401": {
+                        "description": "No authorized response"
                     }
                 },
                 "operationId": "getinvoice",
@@ -510,7 +526,7 @@
             },
             "invoice": {
                 "title": "Root Type for invoice",
-                "description": "inoive",
+                "description": "Invoice entity",
                 "type": "object",
                 "properties": {
                     "id": {
