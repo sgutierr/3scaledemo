@@ -480,7 +480,7 @@ section.invert {
   /*color: white;*/ /* fallback */
   /*color: rgba(255, 255, 255, 0.8);*/
   /* color: rgb(57, 62, 57); */
-  color: #7a7a7a
+  color: rgb(57, 62, 57);
   font-family: Futura, "Trebuchet MS", Arial, sans-serif;
 }
 
@@ -526,7 +526,7 @@ ul.navbar-default li a {
 }
 
 .documentation {
-  font-size: 24px;
+  font-size: 20px;
 }
 
 #flash-messages {
@@ -1111,7 +1111,7 @@ body > header > nav > div > div.navbar-header > a {
 
 body > header > nav > div > div.navbar-header > a > img {
 /* modified by sgutierr before 100% */
-  width: 135%;
+  width: 100%;
   padding-right:0px;
   padding-top: 0px;
   padding-bottom: 0px;
