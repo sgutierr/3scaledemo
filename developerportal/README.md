@@ -7,3 +7,5 @@
 * default.css: main css
 * main_layout: layout used in the demo. Also you need to replace the "logo.png" by your logo file.
 * submenu: example of submenu configuration
+* images: folder with images used in the demo potal
+* private: section used for "internal/public" content. 
