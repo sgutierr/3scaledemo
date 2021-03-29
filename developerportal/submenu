@@ -25,32 +25,31 @@
           <li class="{% if urls.stats.active? %}active{% endif %}">
             <a href="{{ urls.stats }}">Statistics</a>
           </li>
-        {% endif %}
-
+        <li><a href="/docs_search">Docs</a></li>   
+        {% endif %}                  
         {% if provider.multiple_services_allowed? %}
           <li class="{% if urls.services.active? %}active{% endif %}">
             <a href="{{ urls.services }}">{{ urls.services.title }}</a>
           </li>
         {% endif %}
         {% if current_user.fields.type.value == 'Internal' %} 
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe APIs</a></li>
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/private/privateApps">Subscribe</a></li>
         {% endif %}
-        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/docs">Docs</a></li>
+        <li><a class="{% if urls.docs.active? %}active{% endif %}" href="/apis/main">APIs</a></li>
         {% if current_user.fields.type.value == 'Internal' %} 
-        <li><a href="/APICatalog/apilist">Search</a></li>   
+        <li><a href="/APICatalog/apilist">Catalog</a></li>   
         {% else %}
-        <li><a href="/APICatalog/apilist_public">Search</a></li>        
-        {% endif %}
-       
-        <!--
-        <li><a href="/doc_view_backend">MultipleBackends</a></li>   
-        <li class="{% if app.url.active? %}active{% endif %}">
-            <a href="/usecase1/main">UseCase1</a>
-        </li>
-        <li class="{% if app.url.active? %}active{% endif %}">
-            <a href="/usecase2/main">UseCase2</a>
-        </li>        
-        -->
+        <li><a href="/APICatalog/apilist_public">Catalog</a></li>        
+        {% endif %}       
+          <form action="/search" method="get" class="navbar-form navbar-left" role="search">
+          <div class="form-group header-search-inner" id="header_search">
+           
+                     <input type="text" name="q" id="q1" class="header-search-field" placeholder="Search the APIs here...">
+            <button class="search-btn" type="submit">
+              <img src="/images/search.png" height="16" width="16px" alt="">
+            </button>
+          </div>
+        </form>
       </ul>
     {% endunless %}
     <ul id="user_widget" class="nav navbar-nav navbar-right">
@@ -66,7 +65,6 @@
         <li class="{% if urls.account_overview.active? %}active{% endif %}">
           <a href="{{ urls.account_overview }}">
             <i class="fa fa-cogs"></i>
-            Settings
           </a>
         </li>
       {% endunless %}
@@ -79,7 +77,8 @@
 
   {% else %}
     <ul class="nav navbar-nav">
-      <li><a href="/docs">Documentation</a></li>
+      <li><a href="/docs">Get started</a></li>
+      <li><a href="/docs_search">APIS</a></li>
       <li><a href="/#plans">Plans</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
@@ -90,4 +89,5 @@
       </li>
     </ul>
   {% endif %}
+ 
 </div>
