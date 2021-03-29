@@ -1,5 +1,5 @@
 
-# Files description
+# File description
 
 * APICatalog: old API Catalog based on APIs.json project, now it is deprecated better to use this API Catalog https://github.com/sgutierr/3scale-search 
 * Homepage: main developer portal page (landing page). It brings multiple service capabilities and only show in the public zone those services which have at least one Feature in the application plans called "public"
