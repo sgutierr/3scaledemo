@@ -1,0 +1,137 @@
+[
+  {
+    "name": "custom_metrics",
+    "version": "builtin",
+    "configuration": {
+      "rules": [
+        {
+          "increment": "1",
+          "metric": "Status_2XX",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "plain",
+                "op": "matches",
+                "right": "200",
+                "left": "{{status}}"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "Status_4XX",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "plain",
+                "right_type": "liquid",
+                "op": "matches",
+                "right": "{{status}}",
+                "left": "403"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "Status_5XX",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "plain",
+                "op": "matches",
+                "right": "503",
+                "left": "{{ status }}"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "curl",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "plain",
+                "op": "matches",
+                "left": "{{ req.headers.user-agent }}",
+                "right": "curl*"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "Linux_x86_64",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "plain",
+                "op": "matches",
+                "right": "Linux.",
+                "left": "{{ req.headers.user-agent }}"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "Postman",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "plain",
+                "op": "matches",
+                "right": "Postman.*",
+                "left": "{{ req.headers.user-agent }}"
+              }
+            ],
+            "combine_op": "and"
+          }
+        },
+        {
+          "increment": "1",
+          "metric": "response0k",
+          "condition": {
+            "operations": [
+              {
+                "left_type": "liquid",
+                "right_type": "liquid",
+                "op": "matches",
+                "left": "{{ resp.headers.Content-length }}",
+                "right": "^([0-9]|[1-9][0-9][0-9]|1024)$"
+              }
+            ],
+            "combine_op": "and"
+          }
+        }
+      ]
+    },
+    "enabled": true
+  },
+  {
+    "name": "liquid_context_debug",
+    "version": "builtin",
+    "configuration": {
+    },
+    "enabled": false
+  },
+  {
+    "name": "apicast",
+    "version": "builtin",
+    "configuration": {
+    },
+    "enabled": true
+  }
+]
