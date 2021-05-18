@@ -1,7 +1,7 @@
 
 # Example of importing a 3scale custom metric policy
 
-$SERVICE_ID = you need to replace by the 3scale service identifier
+SERVICE_ID = you need to set the 3scale service identifier
 
 **3scale toolbox commands:**
 
