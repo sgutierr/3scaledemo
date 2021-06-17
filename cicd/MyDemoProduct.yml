@@ -1,0 +1,176 @@
+---
+apiVersion: v1
+kind: List
+items:
+- apiVersion: capabilities.3scale.net/v1beta1
+  kind: Product
+  metadata:
+    annotations:
+      3scale_toolbox_created_at: '2021-06-16T08:38:16Z'
+      3scale_toolbox_version: 0.18.0
+    name: unittaorganizattive.zhynviqf
+  spec:
+    name: SOAPServiceS1
+    systemName: SOAPServiceS1
+    description: ''
+    mappingRules:
+    - httpMethod: POST
+      pattern: "/"
+      metricMethodRef: hits
+      increment: 1
+      last: true
+    metrics:
+      hits:
+        friendlyName: Hits
+        unit: hit
+        description: Number of API hits
+      S1Operation:
+        friendlyName: S1Operation
+        unit: S1Operation
+        description: S1Operation
+      S2Operation:
+        friendlyName: S2Operation
+        unit: S2Operation
+        description: S2Operation
+    methods:
+      MethodS1Operation:
+        friendlyName: "/s1/S1Operation"
+        description: "/s1/S1Operation"
+    policies:
+    - name: ip_check
+      version: builtin
+      configuration:
+        error_msg: IP address not allowed
+        client_ip_sources:
+        - X-Real-IP
+        - proxy_protocol_addr
+        - X-Forwarded-For
+        ips:
+        - 0.0.0.0/0
+        check_type: blacklist
+      enabled: false
+    - name: rate_limit
+      version: builtin
+      configuration:
+        limits_exceeded_error:
+          status_code: 429
+          error_handling: exit
+        configuration_error:
+          status_code: 500
+          error_handling: exit
+        connection_limiters: []
+        fixed_window_limiters:
+        - window: 5
+          condition:
+            combine_op: and
+            operations:
+            - left_type: plain
+              right_type: plain
+              op: matches
+              right: '1'
+              left: '1'
+          key:
+            scope: service
+            name_type: plain
+          count: 1
+      enabled: false
+    - name: soap
+      version: builtin
+      configuration:
+        mapping_rules:
+        - delta: 1
+          metric_system_name: S1Operation
+          pattern: "/s1/S1Operation"
+        - delta: 1
+          metric_system_name: S2Operation
+          pattern: "/s1/S2Operation"
+      enabled: true
+    - name: apicast
+      version: builtin
+      configuration: {}
+      enabled: true
+    - name: logging
+      version: builtin
+      configuration:
+        condition:
+          combine_op: and
+          operations: []
+        custom_logging: '***************[{{time_local}}] {{host}}:{{server_port}}
+          {{remote_addr}}:{{remote_port}} \"{{request}}\" {{status}} {{body_bytes_sent}}
+          ({{request_time}}) {{post_action_impact}} *****************'
+        json_object_config: []
+        enable_access_logs: true
+      enabled: false
+    applicationPlans:
+      sandbox:
+        name: Sandbox
+        appsRequireApproval: false
+        trialPeriod: 0
+        setupFee: 0.0
+        custom: false
+        state: published
+        costMonth: 0.0
+        pricingRules: []
+        limits:
+        - period: minute
+          value: 4
+          metricMethodRef:
+            systemName: S1Operation
+        - period: minute
+          value: 10
+          metricMethodRef:
+            systemName: hits
+      premium:
+        name: Premium
+        appsRequireApproval: false
+        trialPeriod: 0
+        setupFee: 0.0
+        custom: false
+        state: published
+        costMonth: 0.0
+        pricingRules: []
+        limits: []
+    backendUsages:
+      UnittaOrganizzativeBackend:
+        path: "/"
+    deployment:
+      apicastHosted:
+        authentication:
+          userkey:
+            authUserKey: user_key
+            credentials: query
+            security:
+              hostHeader: ''
+              secretToken: Shared_secret_sent_from_proxy_to_API_backend_712fa058f33a91b3
+            gatewayResponse:
+              errorStatusAuthFailed: 403
+              errorHeadersAuthFailed: text/plain; charset=us-ascii
+              errorAuthFailed: Authentication failed
+              errorStatusAuthMissing: 403
+              errorHeadersAuthMissing: text/plain; charset=us-ascii
+              errorAuthMissing: Authentication parameters missing
+              errorStatusNoMatch: 404
+              errorHeadersNoMatch: text/plain; charset=us-ascii
+              errorNoMatch: No Mapping Rule matched
+              errorStatusLimitsExceeded: 429
+              errorHeadersLimitsExceeded: text/plain; charset=us-ascii
+              errorLimitsExceeded: Usage limit exceeded
+- apiVersion: capabilities.3scale.net/v1beta1
+  kind: Backend
+  metadata:
+    annotations:
+      3scale_toolbox_created_at: '2021-06-16T08:38:20Z'
+      3scale_toolbox_version: 0.18.0
+    name: UnittaOrganizzativeBackend.tnhfdbaj
+  spec:
+    name: UnittaOrganizzativeBackend
+    systemName: UnittaOrganizzativeBackend
+    privateBaseURL: http://s1-appdev-integration.apps.ocp4.quitala.eu:80/services/s1
+    description: UnittaOrganizzativeBackend
+    mappingRules: []
+    metrics:
+      hits:
+        friendlyName: Hits
+        unit: hit
+        description: Number of API hits
+    methods: {}
